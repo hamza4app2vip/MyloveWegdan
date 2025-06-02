@@ -7,6 +7,578 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+     /* تصميم قسم رسائل تيليجرام المتقدم */
+.telegram-messages-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.telegram-messages-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+/* رأس القسم */
+.telegram-section-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.title-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.telegram-icon {
+    font-size: 2rem;
+    color: #00d4aa;
+    animation: pulse 2s infinite;
+}
+
+.section-title h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* مؤشر الحالة */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.connected { background: #4caf50; }
+.status-dot.disconnected { background: #f44336; }
+.status-dot.error { background: #ff9800; }
+.status-dot.connecting { background: #2196f3; }
+
+.status-text {
+    color: white;
+    font-weight: 500;
+}
+
+/* أزرار التحكم */
+.section-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* شريط الإحصائيات */
+.stats-bar {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.stat-item {
+    text-align: center;
+    color: white;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00d4aa;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* محتوى القسم */
+.telegram-section-content {
+    background: white;
+    padding: 0;
+}
+
+.messages-container {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* قائمة الرسائل */
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* عنصر الرسالة */
+.message-item {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    padding: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.message-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.message-item.recent {
+    border-left-color: #4caf50;
+    background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+}
+
+.message-item.highlight {
+    animation: highlight 3s ease;
+}
+
+/* رأس الرسالة */
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.message-number {
+    background: #667eea;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.message-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    margin-left: 15px;
+}
+
+.author {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.time {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.edited-badge {
+    background: #ff9800;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.message-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.action-icon {
+    background: none;
+    border: none;
+    color: #7f8c8d;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.action-icon:hover {
+    background: #e9ecef;
+    color: #495057;
+}
+
+/* محتوى الرسالة */
+.message-content {
+    margin: 10px 0;
+}
+
+.message-text {
+    margin: 0;
+    line-height: 1.6;
+    color: #2c3e50;
+    font-size: 1.05rem;
+}
+
+/* تذييل الرسالة */
+.message-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #e9ecef;
+}
+
+.quick-action {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quick-action:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.quick-action.danger:hover {
+    background: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* الحالة الفارغة */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: #dee2e6;
+    margin-bottom: 20px;
+}
+
+.empty-state h4 {
+    margin: 0 0 10px 0;
+    color: #495057;
+}
+
+.empty-state p {
+    margin: 0 0 30px 0;
+    font-size: 1.1rem;
+}
+
+/* تذييل القسم */
+.section-footer {
+    background: #f8f9fa;
+    padding: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.action-btn.secondary {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+}
+
+.telegram-info {
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.telegram-info p {
+    margin: 5px 0;
+}
+
+/* النوافذ المنبثقة */
+.telegram-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* الرسائل في النافذة المنبثقة */
+.message-item-full {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.message-number-full {
+    background: #667eea;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.message-content-full {
+    flex: 1;
+}
+
+.message-meta-full {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.message-meta-full .edited {
+    background: #ff9800;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+}
+
+/* الحركات والتأثيرات */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes highlight {
+    0% { background: linear-gradient(135deg, #fff3cd, #ffeaa7); }
+    100% { background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+    .telegram-section-header {
+        padding: 15px;
+    }
+    
+    .section-title {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .stats-bar {
+        gap: 20px;
+    }
+    
+    .message-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .message-meta {
+        margin-left: 0;
+    }
+    
+    .quick-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        justify-content: center;
+    }
+}
+
+/* تحسينات إضافية */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-placeholder {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+/* تأثيرات التمرير */
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+   
         /* تحسين أزرار المزاج */
 .mood-btn {
     transition: all 0.3s ease;
@@ -2471,6 +3043,1582 @@ async function saveLetter() {
             };
             localStorage.setItem('appData', JSON.stringify(currentData));
         }, 60000); // Every minute
+        // تشغيل النظام المتكامل
+let telegramSystem = null;
+let telegramUI = null;
+
+// بدء النظام عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(async () => {
+        try {
+            console.log('🚀 بدء تشغيل النظام المتكامل...');
+            
+            // تهيئة النظام الرئيسي
+            telegramSystem = new TelegramMessageSystem();
+            
+            // انتظار التهيئة
+            await new Promise(resolve => {
+                telegramSystem.on('system:initialized', resolve);
+                setTimeout(resolve, 10000); // حد أقصى 10 ثوان
+            });
+            
+            // تهيئة واجهة المستخدم
+            telegramUI = telegramSystem.uiManager;
+            
+            // إتاحة الوصول العام للواجهة
+            window.telegramUI = telegramUI;
+            
+            console.log('✅ تم تشغيل النظام المتكامل بنجاح');
+            
+        } catch (error) {
+            console.error('❌ فشل في تشغيل النظام:', error);
+        }
+    }, 2000);
+});
+
+// تنظيف عند إغلاق الصفحة
+window.addEventListener('beforeunload', function() {
+    if (telegramSystem) {
+        telegramSystem.cleanup();
+    }
+});
+
+// إعادة الاتصال عند العودة للصفحة
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && telegramSystem) {
+        telegramSystem.reconnect();
+    }
+});
+/**
+ * مدير الواجهة المتقدم
+ */
+class UIManager {
+    constructor(messageSystem) {
+        this.messageSystem = messageSystem;
+        this.elements = {};
+        this.isInitialized = false;
+    }
+
+    async init() {
+        this.createTelegramMessagesSection();
+        this.setupEventListeners();
+        this.startStatusUpdater();
+        this.isInitialized = true;
+        console.log('🎨 تم تهيئة مدير الواجهة');
+    }
+
+    // إنشاء قسم رسائل تيليجرام المميز
+    createTelegramMessagesSection() {
+        // البحث عن مكان الإدراج
+        let container = document.getElementById('telegramMessagesContainer');
+        
+        if (!container) {
+            // إنشاء الحاوية الرئيسية
+            container = document.createElement('div');
+            container.id = 'telegramMessagesContainer';
+            container.className = 'telegram-messages-section';
+            
+            // إدراج في المكان المناسب
+            const quotesSection = document.querySelector('.quotes-section') || 
+                                 document.querySelector('#quotesContent') ||
+                                 document.body;
+            
+            quotesSection.insertBefore(container, quotesSection.firstChild);
+        }
+        
+        container.innerHTML = this.getTelegramSectionHTML();
+        this.elements.container = container;
+        this.elements.messagesList = document.getElementById('telegramMessagesList');
+        this.elements.statusIndicator = document.getElementById('telegramStatus');
+        this.elements.statsContainer = document.getElementById('telegramStats');
+        
+        // تحديث المحتوى
+        this.updateMessagesDisplay();
+        this.updateStats();
+    }
+
+    // HTML قسم رسائل تيليجرام
+    getTelegramSectionHTML() {
+        return `
+            <div class="telegram-section-header">
+                <div class="section-title">
+                    <div class="title-content">
+                        <i class="fab fa-telegram telegram-icon"></i>
+                        <h3>رسائل تيليجرام المباشرة</h3>
+                        <div id="telegramStatus" class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span class="status-text">جاري التحميل...</span>
+                        </div>
+                    </div>
+                    <div class="section-controls">
+                        <button class="control-btn refresh-btn" onclick="telegramUI.forceRefresh()" title="تحديث فوري">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button class="control-btn settings-btn" onclick="telegramUI.showSettings()" title="الإعدادات">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <button class="control-btn minimize-btn" onclick="telegramUI.toggleSection()" title="تصغير/توسيع">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="telegramStats" class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-value" id="totalMessages">0</span>
+                        <span class="stat-label">إجمالي</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="todayMessages">0</span>
+                        <span class="stat-label">اليوم</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="lastSync">--:--</span>
+                        <span class="stat-label">آخر تحديث</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="telegram-section-content" id="telegramSectionContent">
+                <div class="messages-container">
+                    <div id="telegramMessagesList" class="messages-list">
+                        <div class="loading-placeholder">
+                            <div class="loading-spinner"></div>
+                            <p>جاري تحميل الرسائل...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-footer">
+                    <div class="quick-actions">
+                        <button class="action-btn primary" onclick="telegramUI.showAllMessages()">
+                            <i class="fas fa-list"></i>
+                            عرض الكل
+                        </button>
+                        <button class="action-btn secondary" onclick="telegramUI.showSearchDialog()">
+                            <i class="fas fa-search"></i>
+                            بحث
+                        </button>
+                        <button class="action-btn secondary" onclick="telegramUI.showExportDialog()">
+                            <i class="fas fa-download"></i>
+                            تصدير
+                        </button>
+                    </div>
+                    
+                    <div class="telegram-info">
+                        <p>💡 أرسل رسالة من تيليجرام لتظهر هنا فوراً</p>
+                        <p>🗑️ استخدم الأوامر في تيليجرام للحذف والتحكم</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // تحديث عرض الرسائل
+    updateMessagesDisplay() {
+        if (!this.elements.messagesList) return;
+        
+        const messages = this.messageSystem.messageStore.getTelegramMessages();
+        
+        if (messages.length === 0) {
+            this.elements.messagesList.innerHTML = this.getEmptyStateHTML();
+            return;
+        }
+        
+        // عرض آخر 10 رسائل
+        const recentMessages = messages.slice(-10).reverse();
+        
+        this.elements.messagesList.innerHTML = recentMessages.map((message, index) => 
+            this.getMessageHTML(message, messages.length - index)
+        ).join('');
+        
+        // إضافة تأثيرات الحركة
+        this.animateNewMessages();
+    }
+
+    // HTML للرسالة الواحدة
+    getMessageHTML(message, globalIndex) {
+        const date = new Date(message.timestamp);
+        const timeAgo = this.getTimeAgo(date);
+        const isRecent = Date.now() - date.getTime() < 300000; // 5 دقائق
+        
+        return `
+            <div class="message-item ${isRecent ? 'recent' : ''}" data-message-id="${message.id}">
+                <div class="message-header">
+                    <div class="message-number">#${globalIndex}</div>
+                    <div class="message-meta">
+                        <span class="author">${message.author}</span>
+                        <span class="time" title="${date.toLocaleString('ar-SA')}">${timeAgo}</span>
+                        ${message.edited ? '<span class="edited-badge">محرر</span>' : ''}
+                    </div>
+                    <div class="message-actions">
+                        <button class="action-icon" onclick="telegramUI.showMessage(${message.id})" title="عرض كامل">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-icon" onclick="telegramUI.copyDeleteCommand(${globalIndex})" title="نسخ أمر الحذف">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="message-content">
+                    <p class="message-text">${this.escapeHTML(message.text)}</p>
+                </div>
+                
+                <div class="message-footer">
+                    <button class="quick-action" onclick="telegramUI.displayAsQuote('${this.escapeHTML(message.text)}', '${message.author}')">
+                        <i class="fas fa-quote-right"></i>
+                        عرض كاقتباس
+                    </button>
+                    <button class="quick-action danger" onclick="telegramUI.quickDelete(${globalIndex})">
+                        <i class="fas fa-trash"></i>
+                        حذف سريع
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    // HTML للحالة الفارغة
+    getEmptyStateHTML() {
+        return `
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h4>لا توجد رسائل بعد</h4>
+                <p>أرسل رسالة من تيليجرام لتظهر هنا</p>
+                <div class="empty-actions">
+                    <button class="action-btn primary" onclick="telegramUI.showTelegramGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        كيفية الإرسال
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    // تحديث الإحصائيات
+    updateStats() {
+        if (!this.elements.statsContainer) return;
+        
+        const stats = this.messageSystem.messageStore.getStats();
+        
+        document.getElementById('totalMessages').textContent = stats.total;
+        document.getElementById('todayMessages').textContent = stats.today;
+        document.getElementById('lastSync').textContent = new Date().toLocaleTimeString('ar-SA', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // تحديث مؤشر الحالة
+    updateStatus(status) {
+        if (!this.elements.statusIndicator) return;
+        
+        const statusDot = this.elements.statusIndicator.querySelector('.status-dot');
+        const statusText = this.elements.statusIndicator.querySelector('.status-text');
+        
+        const statusConfig = {
+            'connected': { class: 'connected', text: 'متصل' },
+            'disconnected': { class: 'disconnected', text: 'منقطع' },
+            'error': { class: 'error', text: 'خطأ' },
+            'connecting': { class: 'connecting', text: 'جاري الاتصال' }
+        };
+        
+        const config = statusConfig[status] || statusConfig['disconnected'];
+        
+        statusDot.className = `status-dot ${config.class}`;
+        statusText.textContent = config.text;
+    }
+
+    // إعداد مستمعي الأحداث
+    setupEventListeners() {
+        // الاستماع لأحداث النظام
+        this.messageSystem.on('message:added', (event) => {
+            this.onMessageAdded(event.detail);
+        });
+        
+        this.messageSystem.on('messages:deleted', (event) => {
+            this.onMessagesDeleted(event.detail);
+        });
+        
+        this.messageSystem.on('messages:cleared', (event) => {
+            this.onMessagesCleared(event.detail);
+        });
+        
+        this.messageSystem.on('sync:completed', (event) => {
+            this.onSyncCompleted(event.detail);
+        });
+        
+        this.messageSystem.on('sync:error', (event) => {
+            this.onSyncError(event.detail);
+        });
+    }
+
+    // معالج إضافة رسالة جديدة
+    onMessageAdded(message) {
+        this.updateMessagesDisplay();
+        this.updateStats();
+        this.showNotification('💌 وصلت رسالة جديدة!', 'success');
+        this.highlightNewMessage(message.id);
+    }
+
+    // معالج حذف الرسائل
+    onMessagesDeleted(data) {
+        this.updateMessagesDisplay();
+        this.updateStats();
+        this.showNotification(`🗑️ تم حذف ${data.count} رسالة`, 'warning');
+    }
+
+    // معالج مسح جميع الرسائل
+    onMessagesCleared(data) {
+        this.updateMessagesDisplay();
+        this.updateStats();
+        this.showNotification(`🧹 تم حذف جميع الرسائل (${data.count})`, 'warning');
+    }
+
+    // معالج اكتمال المزامنة
+    onSyncCompleted(data) {
+        this.updateStats();
+        this.updateStatus('connected');
+        
+        if (data.count > 0) {
+            this.updateMessagesDisplay();
+        }
+    }
+
+    // معالج خطأ المزامنة
+    onSyncError(error) {
+        this.updateStatus('error');
+        console.error('خطأ في المزامنة:', error);
+    }
+
+    // بدء محدث الحالة
+    startStatusUpdater() {
+        setInterval(() => {
+            const status = this.messageSystem.getStatus();
+            this.updateStatus(status.connectionStatus);
+        }, 5000);
+    }
+
+    // تحديث فوري
+    async forceRefresh() {
+        const refreshBtn = document.querySelector('.refresh-btn i');
+        if (refreshBtn) {
+            refreshBtn.classList.add('fa-spin');
+        }
+        
+        await this.messageSystem.syncMessages();
+        
+        setTimeout(() => {
+            if (refreshBtn) {
+                refreshBtn.classList.remove('fa-spin');
+            }
+        }, 1000);
+    }
+
+    // تبديل عرض القسم
+    toggleSection() {
+        const content = document.getElementById('telegramSectionContent');
+        const toggleBtn = document.querySelector('.minimize-btn i');
+        
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            toggleBtn.className = 'fas fa-chevron-up';
+        } else {
+            content.style.display = 'none';
+            toggleBtn.className = 'fas fa-chevron-down';
+        }
+    }
+
+    // عرض رسالة كاملة
+    showMessage(messageId) {
+        const message = this.messageSystem.messageStore.cache.get(messageId);
+        if (!message) return;
+        
+        const modal = this.createModal('عرض الرسالة', `
+            <div class="message-details">
+                <div class="message-full-text">
+                    <h4>النص الكامل:</h4>
+                    <p>${this.escapeHTML(message.text)}</p>
+                </div>
+                
+                <div class="message-info">
+                    <div class="info-row">
+                        <strong>المؤلف:</strong> ${message.author}
+                    </div>
+                    <div class="info-row">
+                        <strong>التاريخ:</strong> ${new Date(message.timestamp).toLocaleString('ar-SA')}
+                    </div>
+                    <div class="info-row">
+                        <strong>المصدر:</strong> تيليجرام
+                    </div>
+                    ${message.edited ? `
+                        <div class="info-row">
+                            <strong>محرر:</strong> نعم (${message.editTime})
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <div class="message-actions-full">
+                    <button class="action-btn primary" onclick="telegramUI.displayAsQuote('${this.escapeHTML(message.text)}', '${message.author}'); telegramUI.closeModal()">
+                        عرض كاقتباس
+                    </button>
+                    <button class="action-btn secondary" onclick="telegramUI.copyText('${this.escapeHTML(message.text)}')">
+                        نسخ النص
+                    </button>
+                </div>
+            </div>
+        `);
+        
+        document.body.appendChild(modal);
+    }
+
+    // نسخ أمر الحذف
+    copyDeleteCommand(index) {
+        const command = `/delete ${index}`;
+        this.copyToClipboard(command);
+        this.showNotification(`📋 تم نسخ الأمر: ${command}`, 'info');
+    }
+
+    // حذف سريع
+    async quickDelete(index) {
+        if (confirm('هل أنت متأكد من حذف هذه الرسالة؟')) {
+            const command = `/delete ${index}`;
+            this.showNotification(`🗑️ لحذف الرسالة، أرسل في تيليجرام: ${command}`, 'warning');
+            this.copyToClipboard(command);
+        }
+    }
+
+    // عرض كاقتباس
+    displayAsQuote(text, author) {
+        if (typeof displayQuote === 'function') {
+            displayQuote(text, `💌 ${author}`);
+            this.showNotification('✨ تم عرض الرسالة كاقتباس!', 'success');
+        }
+    }
+
+    // عرض جميع الرسائل
+    showAllMessages() {
+        const messages = this.messageSystem.messageStore.getTelegramMessages();
+        
+        if (messages.length === 0) {
+            this.showNotification('📝 لا توجد رسائل لعرضها', 'info');
+            return;
+        }
+        
+        let content = `
+            <div class="all-messages-container">
+                <div class="messages-header">
+                    <h4>جميع رسائل تيليجرام (${messages.length})</h4>
+                </div>
+                <div class="messages-list-full">
+        `;
+        
+        messages.reverse().forEach((message, index) => {
+            const globalIndex = messages.length - index;
+            content += `
+                <div class="message-item-full">
+                    <div class="message-number-full">#${globalIndex}</div>
+                    <div class="message-content-full">
+                        <p>${this.escapeHTML(message.text)}</p>
+                        <div class="message-meta-full">
+                            <span>${message.author}</span>
+                            <span>${new Date(message.timestamp).toLocaleString('ar-SA')}</span>
+                            ${message.edited ? '<span class="edited">محرر</span>' : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        content += `
+                </div>
+            </div>
+        `;
+        
+        const modal = this.createModal('جميع الرسائل', content);
+        document.body.appendChild(modal);
+    }
+
+    // إنشاء نافذة منبثقة
+    createModal(title, content) {
+        const modal = document.createElement('div');
+        modal.className = 'telegram-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>${title}</h3>
+                    <button class="close-btn" onclick="this.closest('.telegram-modal').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${content}
+                </div>
+            </div>
+        `;
+        
+        // إغلاق عند النقر خارج النافذة
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+        
+        return modal;
+    }
+
+    // إغلاق النافذة المنبثقة
+    closeModal() {
+        const modal = document.querySelector('.telegram-modal');
+        if (modal) {
+            modal.remove();
+        }
+    }
+
+    // نسخ للحافظة
+    async copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            // طريقة بديلة
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        }
+    }
+
+    // نسخ النص
+    copyText(text) {
+        this.copyToClipboard(text);
+        this.showNotification('📋 تم نسخ النص', 'success');
+    }
+
+    // عرض إشعار
+    showNotification(message, type = 'info') {
+        if (typeof showToast === 'function') {
+            showToast(message, 4000, type);
+        }
+    }
+
+    // تسليط الضوء على رسالة جديدة
+    highlightNewMessage(messageId) {
+        setTimeout(() => {
+            const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
+            if (messageElement) {
+                messageElement.classList.add('highlight');
+                setTimeout(() => {
+                    messageElement.classList.remove('highlight');
+                }, 3000);
+            }
+        }, 500);
+    }
+
+    // تحريك الرسائل الجديدة
+    animateNewMessages() {
+        const messages = document.querySelectorAll('.message-item');
+        messages.forEach((message, index) => {
+            message.style.animationDelay = `${index * 0.1}s`;
+            message.classList.add('fade-in');
+        });
+    }
+
+    // تنسيق الوقت المنقضي
+    getTimeAgo(date) {
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        
+        if (diffMins < 1) return 'الآن';
+        if (diffMins < 60) return `${diffMins} د`;
+        if (diffHours < 24) return `${diffHours} س`;
+        if (diffDays < 7) return `${diffDays} ي`;
+        
+        return date.toLocaleDateString('ar-SA');
+    }
+
+    // تشفير HTML
+    escapeHTML(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+/**
+ * معالج الأوامر المتقدم
+ */
+class CommandProcessor {
+    constructor(messageSystem) {
+        this.messageSystem = messageSystem;
+        this.commands = new Map();
+        this.setupCommands();
+    }
+
+    async init() {
+        console.log('🤖 تم تهيئة معالج الأوامر');
+    }
+
+    // إعداد الأوامر
+    setupCommands() {
+        this.commands.set('/start', this.handleStart.bind(this));
+        this.commands.set('/help', this.handleHelp.bind(this));
+        this.commands.set('/list', this.handleList.bind(this));
+        this.commands.set('/delete', this.handleDelete.bind(this));
+        this.commands.set('/clear', this.handleClear.bind(this));
+        this.commands.set('/stats', this.handleStats.bind(this));
+        this.commands.set('/search', this.handleSearch.bind(this));
+        this.commands.set('/export', this.handleExport.bind(this));
+        this.commands.set('/status', this.handleStatus.bind(this));
+    }
+
+    // معالجة الأمر
+    async process(messageData) {
+        const [command, ...args] = messageData.text.split(' ');
+        const commandKey = command.toLowerCase();
+        
+        if (this.commands.has(commandKey)) {
+            try {
+                await this.commands.get(commandKey)(messageData, args);
+            } catch (error) {
+                console.error(`❌ خطأ في تنفيذ الأمر ${command}:`, error);
+                await this.sendError(messageData.id, 'حدث خطأ في تنفيذ الأمر');
+            }
+        } else {
+            await this.sendError(messageData.id, `❓ أمر غير معروف: ${command}\nاكتب /help للمساعدة`);
+        }
+    }
+
+    // أمر البداية
+    async handleStart(messageData, args) {
+        const welcomeText = `
+🌟 مرحباً بك في نظام إدارة الرسائل المتقدم! 🌟
+
+💕 هذا البوت يربط بينك وبين موقع الحب الخاص بكما
+
+✨ الميزات المتاحة:
+• إرسال رسائل تظهر فوراً في الموقع
+• حذف وتعديل الرسائل عن بُعد
+• إحصائيات مفصلة ومتقدمة
+• بحث في الرسائل وتصديرها
+
+🚀 ابدأ بإرسال رسالة حب جميلة!
+
+💡 اكتب /help لرؤية جميع الأوامر المتاحة
+        `.trim();
+        
+        await this.messageSystem.sendMessage(welcomeText, messageData.id);
+    }
+
+    // أمر المساعدة
+    async handleHelp(messageData, args) {
+        const helpText = `
+🤖 دليل الأوامر المتقدم:
+
+📝 إدارة الرسائل:
+/list - عرض جميع رسائلك مع الأرقام
+/delete [رقم] - حذف رسالة برقمها
+/delete [نص] - حذف رسائل تحتوي على النص
+/clear - حذف جميع الرسائل (تأكيد مطلوب)
+
+🔍 البحث والإحصائيات:
+/search [كلمة] - البحث في رسائلك
+/stats - عرض إحصائيات مفصلة
+/export - تصدير جميع رسائلك
+
+⚙️ النظام:
+/status - حالة النظام والاتصال
+/help - عرض هذه المساعدة
+
+💡 أمثلة:
+• /delete 5 (حذف الرسالة رقم 5)
+• /delete أحبك (حذف رسائل تحتوي على "أحبك")
+• /search صباح (البحث عن رسائل تحتوي على "صباح")
+
+✨ لإرسال رسالة عادية، اكتب النص مباشرة بدون أوامر
+        `.trim();
+        
+        await this.messageSystem.sendMessage(helpText, messageData.id);
+    }
+
+    // أمر عرض القائمة
+    async handleList(messageData, args) {
+        const messages = this.messageSystem.messageStore.getTelegramMessages();
+        
+        if (messages.length === 0) {
+            await this.messageSystem.sendMessage('📝 لا توجد رسائل في الموقع حالياً', messageData.id);
+            return;
+        }
+        
+        const pageSize = 10;
+        const page = parseInt(args[0]) || 1;
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const pageMessages = messages.slice(startIndex, endIndex);
+        const totalPages = Math.ceil(messages.length / pageSize);
+        
+        let listText = `📋 رسائلك في الموقع (${messages.length})\n`;
+        listText += `📄 صفحة ${page} من ${totalPages}\n\n`;
+        
+        pageMessages.forEach((message, index) => {
+            const globalIndex = startIndex + index + 1;
+            const shortText = message.text.length > 60 ? 
+                message.text.substring(0, 60) + '...' : message.text;
+            const editedMark = message.edited ? ' ✏️' : '';
+            const date = new Date(message.timestamp).toLocaleDateString('ar-SA');
+            
+            listText += `${globalIndex}. "${shortText}"${editedMark}\n`;
+            listText += `📅 ${date}\n\n`;
+        });
+        
+        if (totalPages > 1) {
+            listText += `\n💡 للصفحة التالية: /list ${page + 1}`;
+        }
+        
+        listText += '\n\n🗑️ للحذف: /delete [رقم]';
+        
+        await this.messageSystem.sendMessage(listText, messageData.id);
+    }
+
+    // أمر الحذف
+    async handleDelete(messageData, args) {
+        if (args.length === 0) {
+            await this.sendError(messageData.id, '❌ استخدم: /delete [رقم] أو /delete [نص]');
+            return;
+        }
+        
+        const target = args.join(' ');
+        let deletedCount = 0;
+        let deletedMessages = [];
+        
+        // الحذف بالرقم
+        if (!isNaN(target)) {
+            const index = parseInt(target);
+            const deleted = await this.messageSystem.messageStore.deleteByIndex(index);
+            
+            if (deleted) {
+                deletedCount = 1;
+                deletedMessages = [deleted];
+            }
+        } else {
+            // الحذف بالنص
+            deletedCount = await this.messageSystem.messageStore.deleteByText(target);
+        }
+        
+        if (deletedCount > 0) {
+            this.messageSystem.emit('messages:deleted', { count: deletedCount, messages: deletedMessages });
+            
+            const confirmText = `✅ تم حذف ${deletedCount} رسالة من الموقع\n\n💡 الرسائل المحذوفة اختفت من الموقع فوراً`;
+            await this.messageSystem.sendMessage(confirmText, messageData.id);
+        } else {
+            await this.sendError(messageData.id, '❌ لم يتم العثور على الرسالة المطلوبة');
+        }
+    }
+
+    // أمر مسح الكل
+    async handleClear(messageData, args) {
+        const messages = this.messageSystem.messageStore.getTelegramMessages();
+        
+        if (messages.length === 0) {
+            await this.messageSystem.sendMessage('📝 لا توجد رسائل للحذف', messageData.id);
+            return;
+        }
+        
+        // طلب تأكيد
+        const confirmText = `⚠️ تأكيد الحذف الشامل
+
+🗑️ سيتم حذف ${messages.length} رسالة من الموقع
+
+هذا الإجراء لا يمكن التراجع عنه!
+
+للتأكيد، اكتب: /clear confirm`;
+        
+        if (args[0] !== 'confirm') {
+            await this.messageSystem.sendMessage(confirmText, messageData.id);
+            return;
+        }
+        
+        const deletedCount = await this.messageSystem.messageStore.clearAllTelegramMessages();
+        
+        this.messageSystem.emit('messages:cleared', { count: deletedCount });
+        
+        const resultText = `✅ تم حذف جميع الرسائل (${deletedCount} رسالة)
+
+🧹 الموقع الآن خالي من رسائل تيليجرام
+
+💡 يمكنك البدء من جديد بإرسال رسائل جديدة`;
+        
+        await this.messageSystem.sendMessage(resultText, messageData.id);
+    }
+
+    // أمر الإحصائيات
+    async handleStats(messageData, args) {
+        const stats = this.messageSystem.messageStore.getStats();
+        const systemStatus = this.messageSystem.getStatus();
+        
+        const statsText = `
+📊 إحصائيات مفصلة:
+
+📝 الرسائل:
+• إجمالي الرسائل: ${stats.total}
+• رسائل اليوم: ${stats.today}
+• رسائل محررة: ${stats.edited}
+
+📏 تحليل النصوص:
+• إجمالي الأحرف: ${stats.totalCharacters.toLocaleString()}
+• متوسط طول الرسالة: ${stats.averageLength} حرف
+
+🔧 حالة النظام:
+• الاتصال: ${this.getStatusEmoji(systemStatus.connectionStatus)} ${systemStatus.connectionStatus}
+• آخر تحديث: #${systemStatus.lastUpdateId}
+• المعالجة: ${systemStatus.isProcessing ? '🔄 نشط' : '⏸️ متوقف'}
+
+📅 آخر تحديث: ${new Date().toLocaleString('ar-SA')}
+        `.trim();
+        
+        await this.messageSystem.sendMessage(statsText, messageData.id);
+    }
+
+    // أمر البحث
+    async handleSearch(messageData, args) {
+        if (args.length === 0) {
+            await this.sendError(messageData.id, '❌ استخدم: /search [كلمة البحث]');
+            return;
+        }
+        
+        const query = args.join(' ');
+        const results = this.messageSystem.messageStore.search(query);
+        
+        if (results.length === 0) {
+            await this.messageSystem.sendMessage(`🔍 لا توجد نتائج للبحث عن: "${query}"`, messageData.id);
+            return;
+        }
+        
+        let searchText = `🔍 نتائج البحث عن: "${query}"\n`;
+        searchText += `📊 تم العثور على ${results.length} رسالة\n\n`;
+        
+        results.slice(0, 10).forEach((message, index) => {
+            const shortText = message.text.length > 80 ? 
+                message.text.substring(0, 80) + '...' : message.text;
+            const date = new Date(message.timestamp).toLocaleDateString('ar-SA');
+            
+            searchText += `${index + 1}. "${shortText}"\n📅 ${date}\n\n`;
+        });
+        
+        if (results.length > 10) {
+            searchText += `\n... و ${results.length - 10} نتيجة أخرى`;
+        }
+        
+        await this.messageSystem.sendMessage(searchText, messageData.id);
+    }
+
+    // أمر التصدير
+    async handleExport(messageData, args) {
+        const messages = this.messageSystem.messageStore.getTelegramMessages();
+        
+        if (messages.length === 0) {
+            await this.messageSystem.sendMessage('📝 لا توجد رسائل للتصدير', messageData.id);
+            return;
+        }
+        
+        let exportText = `📄 تصدير رسائلك (${messages.length} رسالة)\n`;
+        exportText += `📅 تاريخ التصدير: ${new Date().toLocaleString('ar-SA')}\n\n`;
+        exportText += '━━━━━━━━━━━━━━━━━━━━\n\n';
+        
+        messages.forEach((message, index) => {
+            const date = new Date(message.timestamp).toLocaleString('ar-SA');
+            exportText += `${index + 1}. "${message.text}"\n`;
+            exportText += `📅 ${date}${message.edited ? ' (محرر)' : ''}\n\n`;
+        });
+        
+        // تقسيم النص إذا كان طويلاً
+        const maxLength = 4000;
+        if (exportText.length > maxLength) {
+            const parts = this.splitText(exportText, maxLength);
+            for (let i = 0; i < parts.length; i++) {
+                const partHeader = i === 0 ? '' : `📄 الجزء ${i + 1}:\n\n`;
+                await this.messageSystem.sendMessage(partHeader + parts[i], messageData.id);
+            }
+        } else {
+            await this.messageSystem.sendMessage(exportText, messageData.id);
+        }
+    }
+
+    // أمر حالة النظام
+    async handleStatus(messageData, args) {
+        const status = this.messageSystem.getStatus();
+        const stats = this.messageSystem.messageStore.getStats();
+        
+        const statusText = `
+🔧 حالة النظام المتقدم:
+
+🌐 الاتصال:
+• الحالة: ${this.getStatusEmoji(status.connectionStatus)} ${status.connectionStatus}
+• آخر تحديث: #${status.lastUpdateId}
+• المحاولات: ${status.retryCount}/3
+
+⚙️ المعالجة:
+• النظام: ${status.isInitialized ? '✅ مُهيأ' : '❌ غير مُهيأ'}
+• المعالجة: ${status.isProcessing ? '🔄 نشط' : '⏸️ متوقف'}
+
+📊 البيانات:
+• الرسائل المحفوظة: ${stats.total}
+• رسائل اليوم: ${stats.today}
+
+⏰ آخر فحص: ${new Date().toLocaleTimeString('ar-SA')}
+        `.trim();
+        
+        await this.messageSystem.sendMessage(statusText, messageData.id);
+    }
+
+    // إرسال رسالة خطأ
+    async sendError(messageId, errorText) {
+        await this.messageSystem.sendMessage(`❌ ${errorText}`, messageId);
+    }
+
+    // الحصول على رمز الحالة
+    getStatusEmoji(status) {
+        const emojis = {
+            'connected': '🟢',
+            'disconnected': '🔴',
+            'error': '🟡',
+            'connecting': '🟡'
+        };
+        return emojis[status] || '⚪';
+    }
+
+    // تقسيم النص الطويل
+    splitText(text, maxLength) {
+        const parts = [];
+        let currentPart = '';
+        const lines = text.split('\n');
+        
+        for (const line of lines) {
+            if ((currentPart + line + '\n').length > maxLength) {
+                if (currentPart) {
+                    parts.push(currentPart.trim());
+                    currentPart = '';
+                }
+            }
+            currentPart += line + '\n';
+        }
+        
+        if (currentPart.trim()) {
+            parts.push(currentPart.trim());
+        }
+        
+        return parts;
+    }
+}
+/**
+ * نظام تخزين وإدارة الرسائل
+ */
+class MessageStore {
+    constructor() {
+        this.storageKey = 'telegram_messages_advanced';
+        this.quotesKey = 'customQuotes';
+        this.cache = new Map();
+        this.isInitialized = false;
+    }
+
+    async init() {
+        await this.loadFromStorage();
+        this.isInitialized = true;
+        console.log('💾 تم تهيئة نظام التخزين');
+    }
+
+    // تحميل البيانات من التخزين
+    async loadFromStorage() {
+        try {
+            const stored = localStorage.getItem(this.storageKey);
+            if (stored) {
+                const data = JSON.parse(stored);
+                data.forEach(message => {
+                    this.cache.set(message.id, message);
+                });
+            }
+            console.log(`📥 تم تحميل ${this.cache.size} رسالة من التخزين`);
+        } catch (error) {
+            console.error('❌ خطأ في تحميل البيانات:', error);
+        }
+    }
+
+    // حفظ البيانات في التخزين
+    async saveToStorage() {
+        try {
+            const data = Array.from(this.cache.values());
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+            
+            // مزامنة مع نظام الاقتباسات القديم
+            await this.syncWithQuotes();
+            
+        } catch (error) {
+            console.error('❌ خطأ في حفظ البيانات:', error);
+        }
+    }
+
+    // مزامنة مع نظام الاقتباسات
+    async syncWithQuotes() {
+        const quotes = JSON.parse(localStorage.getItem(this.quotesKey) || '[]');
+        
+        // إزالة رسائل تيليجرام القديمة
+        const nonTelegramQuotes = quotes.filter(q => q.source !== 'telegram');
+        
+        // إضافة رسائل تيليجرام الجديدة
+        const telegramMessages = Array.from(this.cache.values()).map(msg => ({
+            id: msg.id,
+            text: msg.text,
+            author: msg.author,
+            date: new Date(msg.timestamp).toLocaleDateString('ar-SA'),
+            time: new Date(msg.timestamp).toLocaleTimeString('ar-SA', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            }),
+            source: 'telegram',
+            telegramMessageId: msg.telegramMessageId,
+            telegramUserId: msg.telegramUserId,
+            edited: msg.edited || false,
+            editTime: msg.editTime
+        }));
+        
+        const allQuotes = [...nonTelegramQuotes, ...telegramMessages];
+        localStorage.setItem(this.quotesKey, JSON.stringify(allQuotes));
+    }
+
+    // إضافة رسالة جديدة
+    async addMessage(messageData) {
+        const message = {
+            id: Date.now() + Math.random(),
+            text: messageData.text,
+            author: messageData.author,
+            telegramMessageId: messageData.telegramMessageId,
+            telegramUserId: messageData.telegramUserId,
+            source: 'telegram',
+            timestamp: messageData.timestamp || new Date().toISOString(),
+            created: new Date().toISOString(),
+            edited: false
+        };
+        
+        this.cache.set(message.id, message);
+        await this.saveToStorage();
+        
+        return message;
+    }
+
+    // تحديث رسالة
+    async updateMessage(telegramMessageId, newText) {
+        const message = this.findByTelegramId(telegramMessageId);
+        
+        if (message && newText && newText.trim().length > 0) {
+            message.text = newText.trim();
+            message.edited = true;
+            message.editTime = new Date().toLocaleTimeString('ar-SA', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            message.lastModified = new Date().toISOString();
+            
+            this.cache.set(message.id, message);
+            await this.saveToStorage();
+            
+            return message;
+        }
+        
+        return null;
+    }
+
+    // حذف رسالة بمعرف تيليجرام
+    async deleteByTelegramId(telegramMessageId) {
+        const message = this.findByTelegramId(telegramMessageId);
+        
+        if (message) {
+            this.cache.delete(message.id);
+            await this.saveToStorage();
+            return true;
+        }
+        
+        return false;
+    }
+
+    // حذف رسالة بالرقم
+    async deleteByIndex(index) {
+        const messages = this.getTelegramMessages();
+        
+        if (index > 0 && index <= messages.length) {
+            const message = messages[index - 1];
+            this.cache.delete(message.id);
+            await this.saveToStorage();
+            return message;
+        }
+        
+        return null;
+    }
+
+    // حذف رسائل تحتوي على نص معين
+    async deleteByText(searchText) {
+        const messages = this.getTelegramMessages();
+        const toDelete = messages.filter(msg => 
+            msg.text.toLowerCase().includes(searchText.toLowerCase())
+        );
+        
+        toDelete.forEach(msg => {
+            this.cache.delete(msg.id);
+        });
+        
+        if (toDelete.length > 0) {
+            await this.saveToStorage();
+        }
+        
+        return toDelete.length;
+    }
+
+    // حذف جميع رسائل تيليجرام
+    async clearAllTelegramMessages() {
+        const telegramMessages = this.getTelegramMessages();
+        const count = telegramMessages.length;
+        
+        telegramMessages.forEach(msg => {
+            this.cache.delete(msg.id);
+        });
+        
+        if (count > 0) {
+            await this.saveToStorage();
+        }
+        
+        return count;
+    }
+
+    // البحث عن رسالة بمعرف تيليجرام
+    findByTelegramId(telegramMessageId) {
+        return Array.from(this.cache.values()).find(
+            msg => msg.telegramMessageId === telegramMessageId
+        );
+    }
+
+    // الحصول على جميع رسائل تيليجرام
+    getTelegramMessages() {
+        return Array.from(this.cache.values())
+            .filter(msg => msg.source === 'telegram')
+            .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    }
+
+    // الحصول على عدد رسائل تيليجرام
+    getTelegramMessagesCount() {
+        return this.getTelegramMessages().length;
+    }
+
+    // الحصول على آخر رسالة
+    getLatestMessage() {
+        const messages = this.getTelegramMessages();
+        return messages.length > 0 ? messages[messages.length - 1] : null;
+    }
+
+    // البحث في الرسائل
+    search(query) {
+        const messages = this.getTelegramMessages();
+        return messages.filter(msg => 
+            msg.text.toLowerCase().includes(query.toLowerCase()) ||
+            msg.author.toLowerCase().includes(query.toLowerCase())
+        );
+    }
+
+    // الحصول على إحصائيات
+    getStats() {
+        const messages = this.getTelegramMessages();
+        const now = new Date();
+        const today = now.toLocaleDateString('ar-SA');
+        
+        return {
+            total: messages.length,
+            today: messages.filter(msg => 
+                new Date(msg.timestamp).toLocaleDateString('ar-SA') === today
+            ).length,
+            edited: messages.filter(msg => msg.edited).length,
+            totalCharacters: messages.reduce((sum, msg) => sum + msg.text.length, 0),
+            averageLength: messages.length > 0 ? 
+                Math.round(messages.reduce((sum, msg) => sum + msg.text.length, 0) / messages.length) : 0
+        };
+    }
+}
+/**
+ * نظام إدارة الرسائل المتقدم - للخبراء فقط
+ * Advanced Message Management System - Expert Level
+ */
+class TelegramMessageSystem {
+    constructor() {
+        this.config = {
+            botToken: TELEGRAM_CONFIG.BOT_TOKEN,
+            chatId: TELEGRAM_CONFIG.CHAT_ID,
+            syncInterval: 8000, // 8 ثوان
+            maxRetries: 3,
+            timeout: 10000,
+            batchSize: 50
+        };
+        
+        this.state = {
+            isInitialized: false,
+            isProcessing: false,
+            lastUpdateId: this.getStoredUpdateId(),
+            messageQueue: new Map(),
+            syncTimer: null,
+            retryCount: 0,
+            connectionStatus: 'disconnected'
+        };
+        
+        this.events = new EventTarget();
+        this.messageStore = new MessageStore();
+        this.commandProcessor = new CommandProcessor(this);
+        this.uiManager = new UIManager(this);
+        
+        this.init();
+    }
+
+    // تهيئة النظام
+    async init() {
+        try {
+            console.log('🚀 تهيئة نظام إدارة الرسائل المتقدم...');
+            
+            await this.validateConfig();
+            await this.initializeComponents();
+            await this.startSyncEngine();
+            
+            this.state.isInitialized = true;
+            this.state.connectionStatus = 'connected';
+            
+            this.emit('system:initialized');
+            console.log('✅ تم تهيئة النظام بنجاح');
+            
+        } catch (error) {
+            console.error('❌ فشل في تهيئة النظام:', error);
+            this.handleInitError(error);
+        }
+    }
+
+    // التحقق من صحة الإعدادات
+    async validateConfig() {
+        if (!this.config.botToken || !this.config.chatId) {
+            throw new Error('إعدادات تيليجرام غير مكتملة');
+        }
+        
+        // اختبار الاتصال
+        const testResponse = await this.makeRequest('getMe');
+        if (!testResponse.ok) {
+            throw new Error('فشل في الاتصال بتيليجرام');
+        }
+        
+        console.log('✅ تم التحقق من الإعدادات');
+    }
+
+    // تهيئة المكونات
+    async initializeComponents() {
+        await this.messageStore.init();
+        await this.commandProcessor.init();
+        await this.uiManager.init();
+        
+        this.setupEventListeners();
+        console.log('✅ تم تهيئة المكونات');
+    }
+
+    // بدء محرك المزامنة
+    async startSyncEngine() {
+        // مزامنة فورية
+        await this.syncMessages();
+        
+        // مزامنة دورية
+        this.state.syncTimer = setInterval(() => {
+            this.syncMessages();
+        }, this.config.syncInterval);
+        
+        console.log(`🔄 بدء المزامنة كل ${this.config.syncInterval/1000} ثانية`);
+    }
+
+    // مزامنة الرسائل
+    async syncMessages() {
+        if (this.state.isProcessing) return;
+        
+        try {
+            this.state.isProcessing = true;
+            this.emit('sync:started');
+            
+            const updates = await this.fetchUpdates();
+            
+            if (updates.length > 0) {
+                console.log(`📨 معالجة ${updates.length} تحديث جديد`);
+                
+                for (const update of updates) {
+                    await this.processUpdate(update);
+                }
+                
+                this.updateLastUpdateId(updates);
+                this.emit('sync:completed', { count: updates.length });
+            }
+            
+            this.state.retryCount = 0;
+            this.state.connectionStatus = 'connected';
+            
+        } catch (error) {
+            console.error('❌ خطأ في المزامنة:', error);
+            this.handleSyncError(error);
+        } finally {
+            this.state.isProcessing = false;
+        }
+    }
+
+    // جلب التحديثات من تيليجرام
+    async fetchUpdates() {
+        const params = {
+            offset: this.state.lastUpdateId + 1,
+            limit: this.config.batchSize,
+            timeout: 30
+        };
+        
+        const response = await this.makeRequest('getUpdates', params);
+        
+        if (!response.ok) {
+            throw new Error(`فشل في جلب التحديثات: ${response.description}`);
+        }
+        
+        return response.result || [];
+    }
+
+    // معالجة التحديث الواحد
+    async processUpdate(update) {
+        try {
+            // تحديث معرف آخر تحديث
+            this.state.lastUpdateId = Math.max(this.state.lastUpdateId, update.update_id);
+            
+            // معالجة أنواع التحديثات المختلفة
+            if (update.message) {
+                await this.handleMessage(update.message);
+            } else if (update.edited_message) {
+                await this.handleEditedMessage(update.edited_message);
+            } else if (update.callback_query) {
+                await this.handleCallbackQuery(update.callback_query);
+            }
+            
+        } catch (error) {
+            console.error('❌ خطأ في معالجة التحديث:', error);
+        }
+    }
+
+    // معالجة الرسائل
+    async handleMessage(message) {
+        const messageData = {
+            id: message.message_id,
+            text: message.text,
+            from: message.from,
+            date: message.date,
+            chat: message.chat
+        };
+        
+        // معالجة الأوامر
+        if (messageData.text && messageData.text.startsWith('/')) {
+            await this.commandProcessor.process(messageData);
+            return;
+        }
+        
+        // معالجة الرسائل العادية
+        if (messageData.text && messageData.text.trim().length > 0) {
+            await this.handleRegularMessage(messageData);
+        }
+    }
+
+    // معالجة الرسائل العادية
+    async handleRegularMessage(messageData) {
+        const quote = await this.messageStore.addMessage({
+            text: messageData.text.trim(),
+            author: messageData.from.first_name || 'حبيبي',
+            telegramMessageId: messageData.id,
+            telegramUserId: messageData.from.id,
+            source: 'telegram',
+            timestamp: new Date(messageData.date * 1000).toISOString()
+        });
+        
+        // إرسال تأكيد
+        await this.sendConfirmation(messageData.id, quote);
+        
+        // تحديث الواجهة
+        this.emit('message:added', quote);
+        
+        console.log('✅ تم إضافة رسالة جديدة:', messageData.text.substring(0, 50));
+    }
+
+    // معالجة الرسائل المحررة
+    async handleEditedMessage(editedMessage) {
+        const updated = await this.messageStore.updateMessage(
+            editedMessage.message_id,
+            editedMessage.text
+        );
+        
+        if (updated) {
+            this.emit('message:updated', updated);
+            console.log('✏️ تم تحديث رسالة');
+        }
+    }
+
+    // إرسال تأكيد للمستخدم
+    async sendConfirmation(replyToId, quote) {
+        const totalMessages = await this.messageStore.getTelegramMessagesCount();
+        
+        const confirmationText = `
+✅ تم إضافة رسالتك للموقع!
+
+📊 إحصائيات:
+• رقم الرسالة: #${totalMessages}
+• الوقت: ${new Date().toLocaleTimeString('ar-SA')}
+
+🎯 أوامر مفيدة:
+• /list - عرض جميع رسائلك
+• /delete ${totalMessages} - حذف هذه الرسالة
+• /help - المساعدة
+
+💕 رسالتك الآن تزين الموقع!
+        `.trim();
+        
+        await this.sendMessage(confirmationText, replyToId);
+    }
+
+    // إرسال رسالة
+    async sendMessage(text, replyToId = null) {
+        const params = {
+            chat_id: this.config.chatId,
+            text: text,
+            parse_mode: 'HTML',
+            disable_web_page_preview: true
+        };
+        
+        if (replyToId) {
+            params.reply_to_message_id = replyToId;
+        }
+        
+        return await this.makeRequest('sendMessage', params);
+    }
+
+    // طلب HTTP عام
+    async makeRequest(method, params = {}) {
+        const url = `https://api.telegram.org/bot${this.config.botToken}/${method}`;
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(params),
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            return await response.json();
+            
+        } catch (error) {
+            clearTimeout(timeoutId);
+            throw error;
+        }
+    }
+
+    // إعداد مستمعي الأحداث
+    setupEventListeners() {
+        // مراقبة تغيير حالة الصفحة
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && this.state.connectionStatus === 'disconnected') {
+                this.reconnect();
+            }
+        });
+        
+        // مراقبة إغلاق الصفحة
+        window.addEventListener('beforeunload', () => {
+            this.cleanup();
+        });
+    }
+
+    // إعادة الاتصال
+    async reconnect() {
+        console.log('🔄 إعادة الاتصال...');
+        this.state.retryCount = 0;
+        await this.syncMessages();
+    }
+
+    // تنظيف الموارد
+    cleanup() {
+        if (this.state.syncTimer) {
+            clearInterval(this.state.syncTimer);
+            this.state.syncTimer = null;
+        }
+        console.log('🧹 تم تنظيف الموارد');
+    }
+
+    // معالجة أخطاء التهيئة
+    handleInitError(error) {
+        this.state.connectionStatus = 'error';
+        this.emit('system:error', error);
+        
+        // إعادة المحاولة بعد 10 ثوان
+        setTimeout(() => {
+            if (this.state.retryCount < this.config.maxRetries) {
+                this.state.retryCount++;
+                console.log(`🔄 إعادة المحاولة ${this.state.retryCount}/${this.config.maxRetries}`);
+                this.init();
+            }
+        }, 10000);
+    }
+
+    // معالجة أخطاء المزامنة
+    handleSyncError(error) {
+        this.state.connectionStatus = 'error';
+        this.state.retryCount++;
+        
+        if (this.state.retryCount >= this.config.maxRetries) {
+            console.error('❌ تم الوصول للحد الأقصى من المحاولات');
+            this.state.connectionStatus = 'disconnected';
+        }
+        
+        this.emit('sync:error', error);
+    }
+
+    // إطلاق حدث
+    emit(eventName, data = null) {
+        this.events.dispatchEvent(new CustomEvent(eventName, { detail: data }));
+    }
+
+    // الاستماع لحدث
+    on(eventName, callback) {
+        this.events.addEventListener(eventName, callback);
+    }
+
+    // الحصول على معرف آخر تحديث محفوظ
+    getStoredUpdateId() {
+        return parseInt(localStorage.getItem('telegram_last_update_id') || '0');
+    }
+
+    // تحديث معرف آخر تحديث
+    updateLastUpdateId(updates) {
+        if (updates.length > 0) {
+            const maxId = Math.max(...updates.map(u => u.update_id));
+            this.state.lastUpdateId = maxId;
+            localStorage.setItem('telegram_last_update_id', maxId.toString());
+        }
+    }
+
+    // الحصول على حالة النظام
+    getStatus() {
+        return {
+            isInitialized: this.state.isInitialized,
+            connectionStatus: this.state.connectionStatus,
+            isProcessing: this.state.isProcessing,
+            lastUpdateId: this.state.lastUpdateId,
+            retryCount: this.state.retryCount
+        };
+    }
+}
+
     </script>
 </body>
 </html>
