@@ -1258,6 +1258,137 @@
     <div id="toast" class="toast"></div>
 
     <script>
+        // إعدادات تيليجرام
+const TELEGRAM_CONFIG = {
+    BOT_TOKEN: '7619744256:AAGlTErNoXyRAoBwNO0f8SNwDBzIA2y1Pws', // ضع توكن البوت هنا
+    CHAT_ID: '7619744256',     // ضع معرف المحادثة هنا
+    enabled: true                      // لتفعيل/إلغاء تفعيل الإرسال
+};
+
+// دالة إرسال الرسائل عبر تيليجرام
+async function sendToTelegram(title, content, type = 'love_letter') {
+    // التحقق من تفعيل الخدمة
+    if (!TELEGRAM_CONFIG.enabled || !TELEGRAM_CONFIG.BOT_TOKEN || !TELEGRAM_CONFIG.CHAT_ID) {
+        console.log('تيليجرام غير مفعل أو الإعدادات ناقصة');
+        return false;
+    }
+
+    // تنسيق الرسالة حسب النوع
+    let message = '';
+    let emoji = '';
+    
+    switch(type) {
+        case 'love_letter':
+            emoji = '💌';
+            message = `${emoji} رسالة حب جديدة ${emoji}\n\n`;
+            message += `📝 العنوان: ${title}\n\n`;
+            message += `💕 الرسالة:\n${content}\n\n`;
+            break;
+            
+        case 'memory':
+            emoji = '💭';
+            message = `${emoji} ذكرى جديدة ${emoji}\n\n`;
+            message += `📅 التاريخ: ${title}\n\n`;
+            message += `💖 الذكرى:\n${content}\n\n`;
+            break;
+            
+        case 'mood':
+            emoji = '😊';
+            message = `${emoji} تحديث المزاج ${emoji}\n\n`;
+            message += `🎭 المزاج: ${title}\n`;
+            message += `💭 الرسالة: ${content}\n\n`;
+            break;
+            
+        default:
+            emoji = '💕';
+            message = `${emoji} رسالة جديدة ${emoji}\n\n${content}\n\n`;
+    }
+    
+    // إضافة الوقت والتاريخ
+    message += `⏰ الوقت: ${new Date().toLocaleString('ar-SA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    })}\n\n`;
+    
+    message += `💖 من حبيبتك الغالية 💖`;
+
+    // رابط API تيليجرام
+    const telegramURL = `https://api.telegram.org/bot${TELEGRAM_CONFIG.BOT_TOKEN}/sendMessage`;
+    
+    try {
+        // عرض رسالة تحميل
+        showToast('جاري إرسال الرسالة... ⏳');
+        
+        // إرسال الطلب
+        const response = await fetch(telegramURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CONFIG.CHAT_ID,
+                text: message,
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
+        });
+
+        // التحقق من نجاح الإرسال
+        if (response.ok) {
+            const result = await response.json();
+            if (result.ok) {
+                showToast('تم إرسال الرسالة بنجاح! 📱💕');
+                
+                // حفظ سجل الإرسال
+                saveTelegramLog(title, content, type, 'success');
+                
+                // إضافة تأثير بصري
+                createSparkle();
+                createSparkle();
+                
+                return true;
+            } else {
+                throw new Error(result.description || 'خطأ من تيليجرام');
+            }
+        } else {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+        
+    } catch (error) {
+        console.error('خطأ في إرسال الرسالة:', error);
+        showToast('فشل في إرسال الرسالة 😔');
+        
+        // حفظ سجل الخطأ
+        saveTelegramLog(title, content, type, 'failed', error.message);
+        
+        return false;
+    }
+}
+
+// دالة حفظ سجل الإرسال
+function saveTelegramLog(title, content, type, status, error = null) {
+    const logs = JSON.parse(localStorage.getItem('telegramLogs') || '[]');
+    logs.push({
+        title,
+        content: content.substring(0, 100) + '...', // حفظ أول 100 حرف فقط
+        type,
+        status,
+        error,
+        timestamp: new Date().toISOString(),
+        id: Date.now()
+    });
+    
+    // الاحتفاظ بآخر 50 سجل فقط
+    if (logs.length > 50) {
+        logs.splice(0, logs.length - 50);
+    }
+    
+    localStorage.setItem('telegramLogs', JSON.stringify(logs));
+}
+
         // Global Variables
         let currentTab = 'home';
         let loveStartDate = new Date('2023-06-2'); // تغيير التاريخ حسب بداية العلاقة
@@ -1624,29 +1755,64 @@
             document.getElementById('letterModal').style.display = 'block';
         }
 
-        function saveLetter() {
-            const title = document.getElementById('letterTitle').value;
-            const content = document.getElementById('letterContent').value;
+async function saveLetter() {
+    const title = document.getElementById('letterTitle').value.trim();
+    const content = document.getElementById('letterContent').value.trim();
 
-            if (title && content) {
-                const letters = JSON.parse(localStorage.getItem('loveLetters') || '[]');
-                letters.push({ 
-                    title, 
-                    content, 
-                    date: new Date().toISOString(),
-                    id: Date.now() 
-                });
-                localStorage.setItem('loveLetters', JSON.stringify(letters));
-                
-                loadLoveLetters();
-                closeModal('letterModal');
-                showToast('تم إرسال رسالة الحب! 💌');
-                
-                // Clear form
-                document.getElementById('letterTitle').value = '';
-                document.getElementById('letterContent').value = '';
-            }
+    if (!title || !content) {
+        showToast('يرجى ملء جميع الحقول! 📝');
+        return;
+    }
+
+    // التحقق من طول الرسالة
+    if (content.length > 4000) {
+        showToast('الرسالة طويلة جداً! يرجى تقصيرها 📏');
+        return;
+    }
+
+    try {
+        // حفظ محلياً أولاً
+        const letters = JSON.parse(localStorage.getItem('loveLetters') || '[]');
+        const newLetter = { 
+            title, 
+            content, 
+            date: new Date().toISOString(),
+            id: Date.now(),
+            sent: false // حالة الإرسال
+        };
+        
+        letters.push(newLetter);
+        localStorage.setItem('loveLetters', JSON.stringify(letters));
+        
+        // إرسال عبر تيليجرام
+        const sent = await sendToTelegram(title, content, 'love_letter');
+        
+        // تحديث حالة الإرسال
+        if (sent) {
+            newLetter.sent = true;
+            localStorage.setItem('loveLetters', JSON.stringify(letters));
         }
+        
+        // تحديث العرض
+        loadLoveLetters();
+        closeModal('letterModal');
+        
+        // رسالة نجاح
+        if (sent) {
+            showToast('تم حفظ وإرسال رسالة الحب! 💌✨');
+        } else {
+            showToast('تم حفظ الرسالة محلياً فقط 💾');
+        }
+        
+        // مسح النموذج
+        document.getElementById('letterTitle').value = '';
+        document.getElementById('letterContent').value = '';
+        
+    } catch (error) {
+        console.error('خطأ في حفظ الرسالة:', error);
+        showToast('حدث خطأ في حفظ الرسالة 😔');
+    }
+}
 
         function loadLoveLetters() {
             const letters = JSON.parse(localStorage.getItem('loveLetters') || '[]');
