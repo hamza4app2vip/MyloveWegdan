@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 لحبيبتي وجدان الغالية 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff6b9d;
+            --light-pink: #ffc0cb;
+            --soft-pink: #ffb3d1;
+            --rose-gold: #f7cac9;
+            --blush: #ffeef0;
+            --white: #ffffff;
+            --dark-pink: #e91e63;
+            --gradient-1: linear-gradient(135deg, #ff6b9d, #ffc0cb);
+            --gradient-2: linear-gradient(45deg, #ff9a9e, #fecfef);
+            --gradient-3: linear-gradient(135deg, #f093fb, #f5576c);
+            --shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+            --text-dark: #2c2c2c;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #ffeef0 0%, #fff0f5 50%, #ffe4e6 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" text-anchor="middle" fill="%23ff6b9d" opacity="0.1" font-size="12">💕</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            max-width: 414px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(255, 107, 157, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .header {
+            background: var(--gradient-1);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: slide 15s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            animation: floatUp 6s ease-in-out infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            box-shadow: 0 2px 10px rgba(255, 107, 157, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 10px;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--primary-pink);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab.active {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .nav-tab:hover {
+            background: var(--blush);
+        }
+
+        .nav-tab.active:hover {
+            background: var(--gradient-1);
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 192, 203, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-display {
+            text-align: center;
+            padding: 30px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .counter-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .love-meter {
+            background: var(--gradient-2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .meter-container {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b9d, #ffffff);
+            border-radius: 25px;
+            width: 0%;
+            transition: width 2s ease-in-out;
+            position: relative;
+        }
+
+        .meter-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .weather-widget {
+            background: var(--gradient-3);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .mood-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .mood-btn {
+            background: white;
+            border: 2px solid var(--light-pink);
+            border-radius: 15px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .mood-btn:hover, .mood-btn.selected {
+            background: var(--gradient-1);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .quote-container {
+            background: var(--blush);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid var(--primary-pink);
+            position: relative;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .quote-author {
+            text-align: left;
+            margin-top: 10px;
+            color: var(--dark-pink);
+            font-weight: 600;
+        }
+
+        .memory-timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .memory-timeline::before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+        }
+
+        .memory-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .memory-item::after {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .memory-date {
+            color: var(--dark-pink);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .memory-text {
+            line-height: 1.6;
+        }
+
+        .interactive-game {
+            background: var(--gradient-2);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .game-cell {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-cell:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .music-player {
+            background: var(--gradient-1);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .music-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .music-btn.play {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            height: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .calendar-widget {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-nav {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-nav:hover {
+            background: var(--dark-pink);
+            transform: scale(1.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day:hover {
+            background: var(--blush);
+        }
+
+        .calendar-day.today {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .calendar-day.special {
+            background: var(--gradient-1);
+            color: white;
+            position: relative;
+        }
+
+        .calendar-day.special::after {
+            content: '💕';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.7rem;
+        }
+
+        .notification-center {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .notification {
+            background: var(--blush);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-right: 4px solid var(--primary-pink);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: var(--dark-pink);
+            margin-bottom: 5px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: var(--gradient-2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .voice-message {
+            background: var(--gradient-1);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .voice-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .voice-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .voice-btn.recording {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .surprise-box {
+            background: var(--gradient-3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .surprise-box:hover {
+            transform: scale(1.05);
+        }
+
+        .surprise-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .footer {
+            background: var(--gradient-1);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .footer-heart {
+            font-size: 2rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-pink);
+            font-weight: 600;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-pink);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-pink);
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-1);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+            
+            .nav-tab {
+                padding: 12px 8px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: var(--primary-pink);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .typing-indicator {
+            display: inline-block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="floating-hearts" id="floatingHearts"></div>
+            <h1>💕 لحبيبتي الغالية 💕</h1>
+            <p class="subtitle">أجمل ما في الحياة هو وجودك معي</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('home')">
+                <i class="fas fa-home"></i><br>الرئيسية
+            </button>
+            <button class="nav-tab" onclick="showTab('memories')">
+                <i class="fas fa-heart"></i><br>ذكرياتنا
+            </button>
+            <button class="nav-tab" onclick="showTab('games')">
+                <i class="fas fa-gamepad"></i><br>ألعاب
+            </button>
+            <button class="nav-tab" onclick="showTab('tools')">
+                <i class="fas fa-magic"></i><br>أدوات
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active">
+                <!-- Love Counter -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-calendar-heart"></i>
+                        عداد أيام حبنا
+                    </h3>
+                    <div class="counter-display">
+                        <div class="counter-number" id="daysCounter">0</div>
+                        <div class="counter-label">يوم من الحب والسعادة</div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="hoursCounter">0</div>
+                            <div class="stat-label">ساعة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="minutesCounter">0</div>
+                            <div class="stat-label">دقيقة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Meter -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-heart-pulse"></i>
+                        مقياس الحب
+                    </h3>
+                    <div class="love-meter">
+                        <h4>مستوى حبي لك اليوم</h4>
+                        <div class="meter-container">
+                            <div class="meter-fill" id="loveMeter"></div>
+                        </div>
+                        <p id="lovePercentage">100%</p>
+                    </div>
+                </div>
+
+                <!-- Weather of Love -->
+                <div class="weather-widget">
+                    <h3><i class="fas fa-cloud-sun"></i> طقس الحب اليوم</h3>
+                    <div class="weather-icon" id="weatherIcon">☀️</div>
+                    <h4 id="weatherStatus">مشمس مع نسمات من الحب</h4>
+                    <p id="weatherDesc">درجة الحرارة: ♾️ درجة حب</p>
+                </div>
+
+                <!-- Daily Quote -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-quote-right"></i>
+                        اقتباس اليوم
+                    </h3>
+                    <div class="quote-container">
+                        <p class="quote-text" id="dailyQuote">
+                            "الحب ليس مجرد شعور، بل هو قرار نتخذه كل يوم لنكون مع الشخص الذي نحبه"
+                        </p>
+                        <p class="quote-author">- حمزة حبيبك</p>
+                    </div>
+                    <button class="btn" onclick="getNewQuote()">اقتباس جديد</button>
+                </div>
+
+                <!-- Mood Tracker -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-smile"></i>
+                        كيف مزاجك اليوم؟
+                    </h3>
+                    <div class="mood-selector">
+                        <div class="mood-btn" onclick="selectMood('happy', '😊')">😊</div>
+                        <div class="mood-btn" onclick="selectMood('love', '😍')">😍</div>
+                        <div class="mood-btn" onclick="selectMood('excited', '🤩')">🤩</div>
+                        <div class="mood-btn" onclick="selectMood('calm', '😌')">😌</div>
+                        <div class="mood-btn" onclick="selectMood('romantic', '🥰')">🥰</div>
+                        <div class="mood-btn" onclick="selectMood('dreamy', '😴')">😴</div>
+                        <div class="mood-btn" onclick="selectMood('playful', '😜')">😜</div>
+                        <div class="mood-btn" onclick="selectMood('grateful', '😔')">😔</div>
+                    </div>
+                    <p id="moodMessage">اختاري مزاجك لأرسل لك رسالة مناسبة 💕</p>
+                </div>
+            </div>
+
+            <!-- Memories Tab -->
+            <div id="memories" class="tab-content">
+                <!-- Memory Timeline -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-timeline"></i>
+                        خط زمني لذكرياتنا
+                    </h3>
+                    <div class="memory-timeline" id="memoryTimeline">
+                        <!-- Memories will be loaded here -->
+                    </div>
+                    <button class="btn" onclick="addMemory()">إضافة ذكرى جديدة</button>
+                </div>
+
+                <!-- Special Dates Calendar -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-calendar-check"></i>
+                        تقويم المناسبات الخاصة
+                    </h3>
+                    <div class="calendar-widget">
+                        <div class="calendar-header">
+                            <button class="calendar-nav" onclick="changeMonth(-1)">‹</button>
+                            <h4 id="currentMonth">يناير 2024</h4>
+                            <button class="calendar-nav" onclick="changeMonth(1)">›</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Letters -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-envelope-heart"></i>
+                        رسائل الحب
+                    </h3>
+                    <div id="loveLetters">
+                        <!-- Love letters will be displayed here -->
+                    </div>
+                    <button class="btn" onclick="writeLoveLetter()">كتابة رسالة حب</button>
+                </div>
+            </div>
+
+            <!-- Games Tab -->
+            <div id="games" class="tab-content">
+                <!-- Love Quiz -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-question-circle"></i>
+                        اختبار الحب
+                    </h3>
+                    <div id="quizContainer">
+                        <p>كم تعرفين عني؟ اختبري معلوماتك!</p>
+                        <button class="btn" onclick="startQuiz()">ابدأ الاختبار</button>
+                    </div>
+                </div>
+
+                <!-- Memory Game -->
+                <div class="interactive-game">
+                    <h3><i class="fas fa-brain"></i> لعبة الذاكرة</h3>
+                    <p>اعثري على القلوب المتطابقة!</p>
+                    <div class="game-grid" id="memoryGame">
+                        <!-- Memory game grid will be generated here -->
+                    </div>
+                    <button class="btn btn-secondary" onclick="startMemoryGame()">لعبة جديدة</button>
+                </div>
+
+                <!-- Love Calculator -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-calculator"></i>
+                        حاسبة الحب
+                    </h3>
+                    <div class="input-group">
+                        <label>اسمك:</label>
+                        <input type="text" id="name1" placeholder="أدخلي اسمك">
+                    </div>
+                    <div class="input-group">
+                        <label>اسمي:</label>
+                        <input type="text" id="name2" placeholder="أدخلي اسمي">
+                    </div>
+                    <button class="btn" onclick="calculateLove()">احسبي نسبة الحب</button>
+                    <div id="loveResult"></div>
+                </div>
+
+                <!-- Surprise Box -->
+                <div class="surprise-box" onclick="openSurprise()">
+                    <div class="surprise-icon">🎁</div>
+                    <h3>صندوق المفاجآت</h3>
+                    <p>اضغطي لتحصلي على مفاجأة!</p>
+                </div>
+            </div>
+
+            <!-- Tools Tab -->
+            <div id="tools" class="tab-content">
+                <!-- Music Player -->
+                <div class="music-player">
+                    <h3><i class="fas fa-music"></i> مشغل الموسيقى الرومانسية</h3>
+                    <div id="currentSong">أغنية الحب الأولى</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="musicProgress"></div>
+                    </div>
+                    <div class="music-controls">
+                        <button class="music-btn" onclick="previousSong()">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="music-btn play" onclick="togglePlay()" id="playBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="music-btn" onclick="nextSong()">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Voice Messages -->
+                <div class="voice-message">
+                    <h3><i class="fas fa-microphone"></i> رسائل صوتية</h3>
+                    <p>سجلي رسالة صوتية لي 💕</p>
+                    <button class="voice-btn" onclick="toggleRecording()" id="recordBtn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <div id="voiceMessages">
+                        <!-- Voice messages will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Notification Center -->
+                <div class="notification-center">
+                    <h3 class="card-title">
+                        <i class="fas fa-bell"></i>
+                        مركز الإشعارات
+                    </h3>
+                    <div id="notifications">
+                        <!-- Notifications will be displayed here -->
+                    </div>
+                    <button class="btn" onclick="addReminder()">إضافة تذكير</button>
+                </div>
+
+                <!-- Love Statistics -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-heart"></i>
+                        إحصائيات الحب
+                    </h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="messagesCount">∞</div>
+                            <div class="stat-label"> كلام حب</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="smilesCount">∞</div>
+                            <div class="stat-label">ابتسامة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="hugsCount">12 الف</div>
+                            <div class="stat-label">وسائط</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="kissesCount">290 ألف</div>
+                            <div class="stat-label">رسالة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Forecast -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i class="fas fa-cloud-sun"></i>
+                        توقعات طقس الحب
+                    </h3>
+                    <div id="weatherForecast">
+                        <!-- Weather forecast will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-heart">💕</div>
+            <p>صُنع بكل الحب والشوق</p>
+            <p>لأجمل حبيبة في العالم</p>
+            <div class="typing-indicator">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="memoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('memoryModal')">&times;</span>
+            <h3>إضافة ذكرى جديدة</h3>
+            <div class="input-group">
+                <label>التاريخ:</label>
+                <input type="date" id="memoryDate">
+            </div>
+            <div class="input-group">
+                <label>الذكرى:</label>
+                <textarea id="memoryText" rows="4" placeholder="اكتبي الذكرى الجميلة..."></textarea>
+            </div>
+            <button class="btn" onclick="saveMemory()">حفظ الذكرى</button>
+        </div>
+    </div>
+
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('letterModal')">&times;</span>
+            <h3>كتابة رسالة حب</h3>
+            <div class="input-group">
+                <label>العنوان:</label>
+                <input type="text" id="letterTitle" placeholder="عنوان الرسالة">
+            </div>
+            <div class="input-group">
+                <label>الرسالة:</label>
+                <textarea id="letterContent" rows="6" placeholder="اكتبي رسالة الحب..."></textarea>
+            </div>
+            <button class="btn" onclick="saveLetter()">إرسال الرسالة</button>
+        </div>
+    </div>
+
+    <div id="reminderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reminderModal')">&times;</span>
+            <h3>إضافة تذكير</h3>
+            <div class="input-group">
+                <label>نوع التذكير:</label>
+                <select id="reminderType">
+                    <option value="daily">يومي</option>
+                    <option value="weekly">أسبوعي</option>
+                    <option value="monthly">شهري</option>
+                    <option value="special">مناسبة خاصة</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>الرسالة:</label>
+                <input type="text" id="reminderText" placeholder="نص التذكير">
+            </div>
+            <div class="input-group">
+                <label>الوقت:</label>
+                <input type="time" id="reminderTime">
+            </div>
+            <button class="btn" onclick="saveReminder()">حفظ التذكير</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Global Variables
+        let currentTab = 'home';
+        let loveStartDate = new Date('2023-06-2'); // تغيير التاريخ حسب بداية العلاقة
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let isPlaying = false;
+        let isRecording = false;
+        let currentSongIndex = 0;
+        let memoryGameCards = [];
+        let flippedCards = [];
+        let gameScore = 0;
+
+        // Love quotes array
+        const loveQuotes = [
+            "الحب هو الشيء الوحيد الذي يزداد عندما نقسمه",
+            "أنت لست مجرد حبيبتي، بل أنت حياتي كلها",
+            "في عينيك أرى مستقبلي، وفي قلبك أجد بيتي",
+            "الحب الحقيقي لا يعرف المسافات ولا الزمن",
+            "أنت السبب في أن كل يوم يبدو وكأنه عيد",
+            "حبك يجعل العالم أجمل والحياة أحلى",
+            "معك تعلمت أن الحب ليس مجرد كلمة بل حياة كاملة"
+        ];
+
+        // Songs array
+        const songs = [
+            "أغنية الحب الأولى",
+            "لحن القلوب",
+            "سيمفونية العشق",
+            "نغمة الشوق",
+            "أنشودة الحب"
+        ];
+
+        // Weather statuses
+        const weatherStatuses = [
+            { icon: "☀️", status: "مشمس مع نسمات من الحب", desc: "درجة الحرارة: ♾️ درجة حب" },
+            { icon: "🌙", status: "ليلة رومانسية تحت النجوم", desc: "احتمالية الرومانسية: 100%" },
+            { icon: "🌈", status: "قوس قزح من المشاعر", desc: "الرطوبة: مشبعة بالحب" },
+            { icon: "💫", status: "عاصفة من النجوم والأحلام", desc: "سرعة الرياح: نسيم الحنان" },
+            { icon: "🌸", status: "ربيع دائم في القلب", desc: "الضغط الجوي: مرتفع بالسعادة" }
+        ];
+
+        // Mood messages
+        const moodMessages = {
+            happy: "سعيدة أنك سعيدة! ابتسامتك تضيء يومي 😊",
+            love: "أحبك أكثر مما تتخيلين! 😍💕",
+            excited: "حماسك معدي! دعينا نصنع ذكريات جميلة 🤩",
+            calm: "الهدوء معك أجمل شعور في العالم 😌",
+            romantic: "أنت في مزاج رومانسي؟ أنا أيضاً! 🥰",
+            dreamy: "أحلام سعيدة يا حبيبتي 😴💤",
+            playful: "أحب روحك المرحة! 😜🎉",
+            grateful: "حبيبك معك لا  تحزني حبيبتي"
+        };
+
+        // Quiz questions
+        const quizQuestions = [
+            {
+                question: "اكلة اشتيها من يدك",
+                options: ["دجاج", "اي شي المهم منك", "خبز", "سمك"],
+                correct: 1
+            },
+            {
+                question: "ايش اكثر شي يعجبنا فيك",
+                options: ["جمالي", "صوتي", "كل شي", "اناقتي"],
+                correct: 2
+            },
+            {
+                question: "شي اتمناه منك",
+                options: ["قربك", "صوتك", "كلامك", "اتمنى وجدان"],
+                correct: 3
+            }
+        ];
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            startCounters();
+            generateCalendar();
+            loadMemories();
+            loadLoveLetters();
+            loadNotifications();
+            createFloatingHearts();
+            updateWeather();
+            animateLoveMeter();
+            loadWeatherForecast();
+            startMemoryGame();
+        });
+
+        function initializeApp() {
+            // Set initial love meter
+            setTimeout(() => {
+                document.getElementById('loveMeter').style.width = '100%';
+            }, 1000);
+
+            // Add sparkle effects
+            setInterval(createSparkle, 2000);
+
+            // Update statistics
+            updateStatistics();
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Update nav buttons
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.nav-tab').classList.add('active');
+
+            currentTab = tabName;
+        }
+
+        function startCounters() {
+            function updateCounters() {
+                const now = new Date();
+                const diff = now - loveStartDate;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('daysCounter').textContent = days;
+                document.getElementById('hoursCounter').textContent = hours;
+                document.getElementById('minutesCounter').textContent = minutes;
+            }
+
+            updateCounters();
+            setInterval(updateCounters, 60000); // Update every minute
+        }
+
+        function animateLoveMeter() {
+            const meter = document.getElementById('loveMeter');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    meter.style.width = width + '%';
+                }
+            }, 20);
+        }
+
+        function getNewQuote() {
+            const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+            document.getElementById('dailyQuote').textContent = randomQuote;
+            showToast('تم تحديث الاقتباس! 💕');
+        }
+
+        function selectMood(mood, emoji) {
+            // Remove previous selection
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Add selection to clicked button
+            event.target.classList.add('selected');
+
+            // Update mood message
+            document.getElementById('moodMessage').textContent = moodMessages[mood];
+            
+            showToast(`مزاجك! ${emoji}`);
+        }
+
+        function updateWeather() {
+            const randomWeather = weatherStatuses[Math.floor(Math.random() * weatherStatuses.length)];
+            document.getElementById('weatherIcon').textContent = randomWeather.icon;
+            document.getElementById('weatherStatus').textContent = randomWeather.status;
+            document.getElementById('weatherDesc').textContent = randomWeather.desc;
+        }
+
+    function generateCalendar() {
+    const monthNames = [
+        'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+        'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+    ];
+
+    // المناسبات المختلفة مع 3 مناسبات فقط
+    const specialEvents = {
+        // ذكريات شخصية
+        personal: {
+            '5-5': { message: 'ميلاد حبيبك', emoji: '💕' }
+        },
+        // أعياد ومناسبات
+        holidays: {
+            '5-2': { message: 'عيد الحب', emoji: '💖' }
+        },
+        // أعياد ميلاد
+        birthdays: {
+            '2-25': { message: 'عيد ميلادك', emoji: '🎂' }
+        }
+    };
+
+    document.getElementById('currentMonth').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+
+    const calendarGrid = document.getElementById('calendarGrid');
+    calendarGrid.innerHTML = '';
+
+    // Add day headers
+    const dayHeaders = ['أح', 'إث', 'ث', 'أر', 'خ', 'ج', 'س'];
+    dayHeaders.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.textContent = day;
+        dayHeader.style.fontWeight = 'bold';
+        dayHeader.style.color = 'var(--primary-pink)';
+        dayHeader.style.padding = '10px 5px';
+        dayHeader.style.textAlign = 'center';
+        calendarGrid.appendChild(dayHeader);
+    });
+
+    // Add empty cells for days before month starts
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day';
+        calendarGrid.appendChild(emptyDay);
+    }
+
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        
+        // التحقق من المناسبات الخاصة
+        const dateKey = `${currentMonth}-${day}`;
+        let isSpecial = false;
+        let eventInfo = null;
+        let eventType = '';
+
+        // البحث في جميع أنواع المناسبات
+        if (specialEvents.personal[dateKey]) {
+            isSpecial = true;
+            eventInfo = specialEvents.personal[dateKey];
+            eventType = 'personal';
+        } else if (specialEvents.holidays[dateKey]) {
+            isSpecial = true;
+            eventInfo = specialEvents.holidays[dateKey];
+            eventType = 'holiday';
+        } else if (specialEvents.birthdays[dateKey]) {
+            isSpecial = true;
+            eventInfo = specialEvents.birthdays[dateKey];
+            eventType = 'birthday';
+        }
+
+        // تطبيق التنسيق للأيام المميزة
+        if (isSpecial) {
+            dayElement.classList.add('special', eventType);
+            dayElement.title = `${eventInfo.emoji} ${eventInfo.message}`;
+            dayElement.innerHTML = `
+                <div style="font-weight: bold;">${day}</div>
+                <div style="font-size: 0.8rem; margin-top: 2px;">${eventInfo.emoji}</div>
+            `;
+            
+            // إضافة تأثير نبضة للأيام المميزة
+            dayElement.style.animation = 'heartbeat 2s ease-in-out infinite';
+            
+            // إضافة حدث النقر لإظهار رسالة
+            dayElement.addEventListener('click', () => {
+                showToast(`${eventInfo.emoji} ${eventInfo.message}`);
+                createSparkle();
+            });
+        } else {
+            dayElement.textContent = day;
+        }
+
+        // Mark today
+        if (currentYear === today.getFullYear() && 
+            currentMonth === today.getMonth() && 
+            day === today.getDate()) {
+            dayElement.classList.add('today');
+            if (!isSpecial) {
+                dayElement.style.background = 'var(--primary-pink)';
+                dayElement.style.color = 'white';
+            }
+        }
+
+        // إضافة تأثير التمرير للأيام العادية
+        if (!isSpecial) {
+            dayElement.addEventListener('mouseenter', () => {
+                dayElement.style.background = 'var(--blush)';
+                dayElement.style.transform = 'scale(1.1)';
+            });
+            
+            dayElement.addEventListener('mouseleave', () => {
+                if (!dayElement.classList.contains('today')) {
+                    dayElement.style.background = '';
+                }
+                dayElement.style.transform = 'scale(1)';
+            });
+        }
+
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar();
+        }
+
+        function addMemory() {
+            document.getElementById('memoryModal').style.display = 'block';
+        }
+
+        function saveMemory() {
+            const date = document.getElementById('memoryDate').value;
+            const text = document.getElementById('memoryText').value;
+
+            if (date && text) {
+                const memories = JSON.parse(localStorage.getItem('memories') || '[]');
+                memories.push({ date, text, id: Date.now() });
+                localStorage.setItem('memories', JSON.stringify(memories));
+                
+                loadMemories();
+                closeModal('memoryModal');
+                showToast('تم حفظ الذكرى بنجاح! 💕');
+                
+                // Clear form
+                document.getElementById('memoryDate').value = '';
+                document.getElementById('memoryText').value = '';
+            }
+        }
+
+        function loadMemories() {
+            const memories = JSON.parse(localStorage.getItem('memories') || '[]');
+            const timeline = document.getElementById('memoryTimeline');
+            
+            timeline.innerHTML = '';
+            
+            memories.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(memory => {
+                const memoryItem = document.createElement('div');
+                memoryItem.className = 'memory-item';
+                memoryItem.innerHTML = `
+                    <div class="memory-date">${formatDate(memory.date)}</div>
+                    <div class="memory-text">${memory.text}</div>
+                `;
+                timeline.appendChild(memoryItem);
+            });
+
+            if (memories.length === 0) {
+                timeline.innerHTML = '<p style="text-align: center; color: var(--primary-pink);">لا توجد ذكريات محفوظة بعد. ابدئي بإضافة أول ذكرى! 💕</p>';
+            }
+        }
+
+        function writeLoveLetter() {
+            document.getElementById('letterModal').style.display = 'block';
+        }
+
+        function saveLetter() {
+            const title = document.getElementById('letterTitle').value;
+            const content = document.getElementById('letterContent').value;
+
+            if (title && content) {
+                const letters = JSON.parse(localStorage.getItem('loveLetters') || '[]');
+                letters.push({ 
+                    title, 
+                    content, 
+                    date: new Date().toISOString(),
+                    id: Date.now() 
+                });
+                localStorage.setItem('loveLetters', JSON.stringify(letters));
+                
+                loadLoveLetters();
+                closeModal('letterModal');
+                showToast('تم إرسال رسالة الحب! 💌');
+                
+                // Clear form
+                document.getElementById('letterTitle').value = '';
+                document.getElementById('letterContent').value = '';
+            }
+        }
+
+        function loadLoveLetters() {
+            const letters = JSON.parse(localStorage.getItem('loveLetters') || '[]');
+            const container = document.getElementById('loveLetters');
+            
+            container.innerHTML = '';
+            
+            letters.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(letter => {
+                const letterElement = document.createElement('div');
+                letterElement.className = 'quote-container';
+                letterElement.style.marginBottom = '15px';
+                letterElement.innerHTML = `
+                    <h4 style="color: var(--dark-pink); margin-bottom: 10px;">${letter.title}</h4>
+                    <p class="quote-text">${letter.content}</p>
+                    <p class="quote-author">- ${formatDate(letter.date)}</p>
+                `;
+                container.appendChild(letterElement);
+            });
+
+            if (letters.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--primary-pink);">لا توجد رسائل حب بعد. اكتبي أول رسالة! 💌</p>';
+            }
+        }
+
+        function startQuiz() {
+            let currentQuestion = 0;
+            let score = 0;
+
+            function showQuestion() {
+                if (currentQuestion < quizQuestions.length) {
+                    const question = quizQuestions[currentQuestion];
+                    const container = document.getElementById('quizContainer');
+                    
+                    container.innerHTML = `
+                        <h4>السؤال ${currentQuestion + 1} من ${quizQuestions.length}</h4>
+                        <p>${question.question}</p>
+                        <div style="margin: 20px 0;">
+                            ${question.options.map((option, index) => 
+                                `<button class="btn btn-secondary" style="display: block; width: 100%; margin: 10px 0;" onclick="answerQuestion(${index})">${option}</button>`
+                            ).join('')}
+                        </div>
+                    `;
+                } else {
+                    // Show results
+                    const container = document.getElementById('quizContainer');
+                    const percentage = (score / quizQuestions.length) * 100;
+                    let message = '';
+                    
+                    if (percentage >= 80) {
+                        message = 'ممتاز! تعرفينني جيداً جداً! 💕';
+                    } else if (percentage >= 60) {
+                        message = 'جيد! لكن يمكنك معرفة المزيد عني 😊';
+                    } else {
+                        message = 'نحتاج لقضاء وقت أكثر معاً! 😄';
+                    }
+                    
+                    container.innerHTML = `
+                        <h4>نتيجة الاختبار</h4>
+                        <div class="counter-display">
+                            <div class="counter-number">${percentage}%</div>
+                            <div class="counter-label">${message}</div>
+                        </div>
+                        <button class="btn" onclick="startQuiz()">إعادة الاختبار</button>
+                    `;
+                }
+            }
+
+            window.answerQuestion = function(selectedIndex) {
+                if (selectedIndex === quizQuestions[currentQuestion].correct) {
+                    score++;
+                    showToast('إجابة صحيحة! 🎉');
+                } else {
+                    showToast('إجابة خاطئة 😅');
+                }
+                currentQuestion++;
+                setTimeout(showQuestion, 1000);
+            };
+
+            showQuestion();
+        }
+
+        function startMemoryGame() {
+            const gameGrid = document.getElementById('memoryGame');
+            const symbols = ['💕', '💖', '💗', '💘', '💝', '💞', '💟', '❤️'];
+            const cards = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+            
+            gameGrid.innerHTML = '';
+            memoryGameCards = [];
+            flippedCards = [];
+            gameScore = 0;
+
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'game-cell';
+                card.dataset.symbol = symbol;
+                card.dataset.index = index;
+                card.textContent = '💭';
+                card.onclick = () => flipCard(card);
+                gameGrid.appendChild(card);
+                memoryGameCards.push(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                card.textContent = card.dataset.symbol;
+                card.classList.add('flipped');
+                flippedCards.push(card);
+
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.symbol === card2.dataset.symbol) {
+                card1.style.background = 'var(--gradient-1)';
+                card2.style.background = 'var(--gradient-1)';
+                gameScore++;
+                showToast('تطابق رائع! 💕');
+                
+                if (gameScore === 8) {
+                    setTimeout(() => showToast('مبروك! أكملت اللعبة! 🎉'), 500);
+                }
+            } else {
+                card1.textContent = '💭';
+                card2.textContent = '💭';
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+            
+            flippedCards = [];
+        }
+
+      function calculateLove() {
+    const name1 = document.getElementById('name1').value.trim();
+    const name2 = document.getElementById('name2').value.trim();
+    
+    // الأسماء المطلوبة (غير هذه الأسماء)
+    const herName = "وجدان"; // اسم حبيبتك
+    const myName = "حمزة";   // اسمك
+    
+    if (!name1 || !name2) {
+        showToast('يرجى إدخال الاسمين! 😊');
+        return;
+    }
+    
+    // التحقق من جميع الاحتمالات الصحيحة
+    const isCorrectCombination = 
+        (name1.toLowerCase() === herName.toLowerCase() && name2.toLowerCase() === myName.toLowerCase()) ||
+        (name1.toLowerCase() === myName.toLowerCase() && name2.toLowerCase() === herName.toLowerCase());
+    
+    if (isCorrectCombination) {
+        // الأسماء صحيحة - نسبة مثالية
+        const percentage = 100;
+        
+        document.getElementById('loveResult').innerHTML = `
+            <div class="counter-display" style="margin-top: 20px;">
+                <div class="counter-number">${percentage}%</div>
+                <div class="counter-label">نسبة الحب المثالية</div>
+                <p style="margin-top: 15px;">💕 حب أبدي وحقيقي! 💕</p>
+                <p style="color: white; opacity: 0.9;">أنتما روحان في جسدين! 👫✨</p>
+                <div style="margin-top: 15px; font-size: 2rem;">💖💍💖</div>
+            </div>
+        `;
+        
+        showToast('حب مثالي 100%! 💕👑');
+        
+        // إضافة تأثيرات خاصة
+        createSparkle();
+        setTimeout(createSparkle, 500);
+        setTimeout(createSparkle, 1000);
+        
+    } else {
+        // الأسماء خاطئة
+        const percentage = Math.floor(Math.random() * 40) + 20; // 20-60%
+        
+        document.getElementById('loveResult').innerHTML = `
+            <div class="counter-display" style="margin-top: 20px;">
+                <div class="counter-number">${percentage}%</div>
+                <div class="counter-label">نسبة الحب</div>
+                <p style="margin-top: 15px;">🤔 هناك خطأ ما!</p>
+                <p style="color: white; opacity: 0.9;">
+                    تأكدي من كتابة اسمك واسمي بشكل صحيح يا حبيبتي 😘
+                </p>
+                <p style="color: white; opacity: 0.8; font-size: 0.9rem; margin-top: 10px;">
+                    تلميح: اسمك يبدأ بحرف "${herName.charAt(0)}" واسمي يبدأ بحرف "${myName.charAt(0)}" 😉
+                </p>
+            </div>
+        `;
+        
+        showToast('جربي مرة أخرى! 😉💕');
+    }
+}
+
+
+        function openSurprise() {
+            const surprises = [
+                "🌹 وردة حمراء لأجمل حبيبة",
+                "🍫 شوكولاتة حلوة مثلك",
+                "⭐ نجمة من السماء لك",
+                "🦋 فراشة جميلة مثل روحك",
+                "🌙 قمر ينير ليلك",
+                "💎 جوهرة ثمينة مثل قلبك",
+                "🌺 زهرة عطرة لحبيبتي",
+                "🎵 أغنية حب مخصصة لك"
+            ];
+            
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            showToast(randomSurprise);
+            
+            // Add sparkle effect
+            createSparkle();
+        }
+
+        function togglePlay() {
+            const playBtn = document.getElementById('playBtn');
+            const icon = playBtn.querySelector('i');
+            
+            if (isPlaying) {
+                icon.className = 'fas fa-play';
+                isPlaying = false;
+                showToast('تم إيقاف الموسيقى');
+            } else {
+                icon.className = 'fas fa-pause';
+                isPlaying = true;
+                showToast('تشغيل الموسيقى الرومانسية 🎵');
+                animateProgress();
+            }
+        }
+
+        function animateProgress() {
+            if (isPlaying) {
+                const progress = document.getElementById('musicProgress');
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100 || !isPlaying) {
+                        clearInterval(interval);
+                        if (width >= 100) {
+                            nextSong();
+                        }
+                    } else {
+                        width += 0.5;
+                        progress.style.width = width + '%';
+                    }
+                }, 100);
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            document.getElementById('currentSong').textContent = songs[currentSongIndex];
+            document.getElementById('musicProgress').style.width = '0%';
+            showToast(`الآن: ${songs[currentSongIndex]} 🎵`);
+            
+            if (isPlaying) {
+                animateProgress();
+            }
+        }
+
+        function previousSong() {
+            currentSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
+            document.getElementById('currentSong').textContent = songs[currentSongIndex];
+            document.getElementById('musicProgress').style.width = '0%';
+            showToast(`الآن: ${songs[currentSongIndex]} 🎵`);
+            
+            if (isPlaying) {
+                animateProgress();
+            }
+        }
+
+        function toggleRecording() {
+            const recordBtn = document.getElementById('recordBtn');
+            const icon = recordBtn.querySelector('i');
+            
+            if (isRecording) {
+                icon.className = 'fas fa-microphone';
+                recordBtn.classList.remove('recording');
+                isRecording = false;
+                showToast('تم حفظ الرسالة الصوتية! 💕');
+                addVoiceMessage();
+            } else {
+                icon.className = 'fas fa-stop';
+                recordBtn.classList.add('recording');
+                isRecording = true;
+                showToast('جاري التسجيل... 🎤');
+            }
+        }
+
+        function addVoiceMessage() {
+            const container = document.getElementById('voiceMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'notification';
+            messageDiv.innerHTML = `
+                <div class="notification-time">${new Date().toLocaleTimeString('ar-SA')}</div>
+                <div>رسالة صوتية جديدة 🎤💕</div>
+                <button class="btn btn-secondary" style="margin-top: 10px;">تشغيل</button>
+            `;
+            container.appendChild(messageDiv);
+        }
+
+        function addReminder() {
+            document.getElementById('reminderModal').style.display = 'block';
+        }
+
+        function saveReminder() {
+            const type = document.getElementById('reminderType').value;
+            const text = document.getElementById('reminderText').value;
+            const time = document.getElementById('reminderTime').value;
+
+            if (text && time) {
+                const reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+                reminders.push({ 
+                    type, 
+                    text, 
+                    time, 
+                    date: new Date().toISOString(),
+                    id: Date.now() 
+                });
+                localStorage.setItem('reminders', JSON.stringify(reminders));
+                
+                loadNotifications();
+                closeModal('reminderModal');
+                showToast('تم إضافة التذكير! ⏰');
+                
+                // Clear form
+                document.getElementById('reminderText').value = '';
+                document.getElementById('reminderTime').value = '';
+            }
+        }
+
+        function loadNotifications() {
+            const notifications = document.getElementById('notifications');
+            const reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+            
+            // Add some default notifications
+            const defaultNotifications = [
+                { text: 'لا تنسي أن تبتسمي اليوم! 😊', time: new Date().toLocaleTimeString('ar-SA') },
+                { text: 'أحبك أكثر من الأمس وأقل من الغد 💕', time: new Date().toLocaleTimeString('ar-SA') },
+                { text: 'أنت أجمل ما في حياتي 🌹', time: new Date().toLocaleTimeString('ar-SA') }
+            ];
+            
+            notifications.innerHTML = '';
+            
+            [...defaultNotifications, ...reminders].forEach(notification => {
+                const notificationDiv = document.createElement('div');
+                notificationDiv.className = 'notification';
+                notificationDiv.innerHTML = `
+                    <div class="notification-time">${notification.time}</div>
+                    <div>${notification.text}</div>
+                `;
+                notifications.appendChild(notificationDiv);
+            });
+        }
+
+        function updateStatistics() {
+            // Animate statistics with random increments
+            const stats = ['messagesCount', 'hugsCount', 'kissesCount'];
+            stats.forEach(statId => {
+                const element = document.getElementById(statId);
+                if (element && element.textContent !== '∞') {
+                    const currentValue = parseInt(element.textContent.replace(',', ''));
+                    const increment = Math.floor(Math.random() * 5) + 1;
+                    element.textContent = (currentValue + increment).toLocaleString();
+                }
+            });
+        }
+
+        function loadWeatherForecast() {
+            const forecast = document.getElementById('weatherForecast');
+            const days = ['اليوم', 'غداً', 'بعد غد', 'الخميس', 'الجمعة'];
+            const conditions = ['☀️ مشمس', '🌙 رومانسي', '💫 ساحر', '🌈 ملون', '🌸 جميل'];
+            
+            forecast.innerHTML = '';
+            
+            days.forEach((day, index) => {
+                const dayForecast = document.createElement('div');
+                dayForecast.style.cssText = `
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px;
+                    margin: 5px 0;
+                    background: var(--blush);
+                    border-radius: 10px;
+                `;
+                
+                dayForecast.innerHTML = `
+                    <span>${day}</span>
+                    <span>${conditions[index]}</span>
+                    <span>♾️°</span>
+                `;
+                
+                forecast.appendChild(dayForecast);
+            });
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = ['💕', '💖', '💗', '💘'][Math.floor(Math.random() * 4)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 2000);
+        }
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-SA', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+
+        // Update statistics periodically
+        setInterval(updateStatistics, 30000); // Every 30 seconds
+
+        // Update weather periodically
+        setInterval(updateWeather, 300000); // Every 5 minutes
+
+        // Auto-save functionality
+        setInterval(() => {
+            const currentData = {
+                lastVisit: new Date().toISOString(),
+                totalVisits: (parseInt(localStorage.getItem('totalVisits')) || 0) + 1
+            };
+            localStorage.setItem('appData', JSON.stringify(currentData));
+        }, 60000); // Every minute
+    </script>
+</body>
+</html>
