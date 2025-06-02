@@ -1100,43 +1100,6 @@
                 </div>
             </div>
 
-<div class="card">
-    <h3 class="card-title">
-        <i class="fab fa-telegram"></i>
-        لوحة تحكم تيليجرام
-    </h3>
-    
-    <!-- معلومات البوت -->
-    
-    
-    <!-- أزرار التحكم -->
-    <div class="telegram-controls" style="margin-bottom: 20px;">
-        <h4>🔧 إعداد الاتصال</h4>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
-            <button class="btn" onclick="getChatId()" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-                <i class="fas fa-search"></i> الحصول على Chat ID
-            </button>
-            <button class="btn" onclick="testTelegramConnection()" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-                <i class="fas fa-wifi"></i> اختبار الاتصال
-            </button>
-        </div>
-        
-       
-    
-    <!-- الإحصائيات -->
-   
-    
-    <!-- إدارة السجل -->
-    
-    
-    <!-- حالة الخدمة -->
-    <div class="service-status" style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border-radius: 10px;">
-        <h5 style="margin: 0 0 10px 0;">🔔 حالة الخدمة</h5>
-        <p style="margin: 0; font-size: 0.9rem;">
-            عند تفعيل الخدمة بنجاح، ستصلك جميع رسائل الحب والذكريات وتحديثات المزاج فوراً على تيليجرام! 💕
-        </p>
-    </div>
-</div>
             <!-- Tools Tab -->
             <div id="tools" class="tab-content">
                 <!-- Music Player -->
@@ -1182,7 +1145,42 @@
                     </div>
                     <button class="btn" onclick="addReminder()">إضافة تذكير</button>
                 </div>
-
+<div class="card">
+    <h3 class="card-title">
+        <i class="fab fa-telegram"></i>
+        لوحة تحكم تيليجرام
+    </h3>
+    <div class="telegram-setup">
+        <h4>إعداد البوت:</h4>
+        <p><strong>اسم البوت:</strong> @TESTBOT_772S_bot</p>
+        <p><strong>ID البوت:</strong> 7619744256</p>
+        <p><strong>الحالة:</strong> <span id="connectionStatus">غير محدد</span></p>
+        
+        <div class="button-group">
+            <button class="btn" onclick="getChatId()">الحصول على Chat ID</button>
+            <button class="btn" onclick="testTelegramConnection()">اختبار الاتصال</button>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <h4>إحصائيات الإرسال:</h4>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="sentCount">0</div>
+                <div class="stat-label">رسالة مرسلة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="failedCount">0</div>
+                <div class="stat-label">رسالة فاشلة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <button class="btn btn-secondary" onclick="showTelegramLogs()">عرض سجل الإرسال</button>
+        <button class="btn btn-secondary" onclick="clearTelegramLogs()">مسح السجل</button>
+    </div>
+</div>
                 <!-- Love Statistics -->
                 <div class="card">
                     <h3 class="card-title">
@@ -1231,7 +1229,7 @@
                 <span>.</span><span>.</span><span>.</span>
             </div>
         </div>
-    </div>
+      </div>
     <!-- Modals -->
     <div id="memoryModal" class="modal">
         <div class="modal-content">
@@ -1294,78 +1292,7 @@
     <div id="toast" class="toast"></div>
 
     <script>
-    async function saveMemory() {
-    const date = document.getElementById('memoryDate').value;
-    const text = document.getElementById('memoryText').value.trim();
-
-    if (!date || !text) {
-        showToast('يرجى ملء جميع الحقول! 📝');
-        return;
-    }
-
-    try {
-        // حفظ محلياً
-        const memories = JSON.parse(localStorage.getItem('memories') || '[]');
-        const newMemory = { 
-            date, 
-            text, 
-            id: Date.now(),
-            sent: false
-        };
-        
-        memories.push(newMemory);
-        localStorage.setItem('memories', JSON.stringify(memories));
-        
-        // إرسال عبر تيليجرام
-        const formattedDate = formatDate(date);
-        const sent = await sendToTelegram(formattedDate, text, 'memory');
-        
-        // تحديث حالة الإرسال
-        if (sent) {
-            newMemory.sent = true;
-            localStorage.setItem('memories', JSON.stringify(memories));
-        }
-        
-        loadMemories();
-        closeModal('memoryModal');
-        
-        if (sent) {
-            showToast('تم حفظ وإرسال الذكرى! 💭✨');
-        } else {
-            showToast('تم حفظ الذكرى محلياً فقط 💾');
-        }
-        
-        // مسح النموذج
-        document.getElementById('memoryDate').value = '';
-        document.getElementById('memoryText').value = '';
-        
-    } catch (error) {
-        console.error('خطأ في حفظ الذكرى:', error);
-        showToast('حدث خطأ في حفظ الذكرى 😔');
-    }
-}
-
-async function selectMood(mood, emoji) {
-    // إزالة التحديد السابق
-    document.querySelectorAll('.mood-btn').forEach(btn => {
-        btn.classList.remove('selected');
-    });
-
-    // إضافة التحديد للزر المنقور
-    event.target.classList.add('selected');
-
-    // تحديث رسالة المزاج
-    const message = moodMessages[mood];
-    document.getElementById('moodMessage').textContent = message;
-    
-    // إرسال تحديث المزاج عبر تيليجرام
-    const moodText = `${emoji} ${mood}`;
-    await sendToTelegram(moodText, message, 'mood');
-    
-    showToast(`تم تحديث المزاج! ${emoji}`);
-}
-
-    
+    // دالة اختبار الاتصال المحسنة
 async function testTelegramConnection() {
     const statusElement = document.getElementById('connectionStatus');
     
